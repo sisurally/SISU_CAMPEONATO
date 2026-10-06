@@ -103,5 +103,10 @@
     "coche": "Skôda 130 RS Grp2",
     "tipo": "Tierra Lisa",
     "archivo": "SETUPS/T_LISA_SK130.lsp"
+  },
+    {
+    "coche": "Ford Mk VI S2000",
+    "tipo": "Asfalto Liso",
+    "archivo": "SETUPS/ASF_LISO_FMKS2000.lsp"
   }
 ]
