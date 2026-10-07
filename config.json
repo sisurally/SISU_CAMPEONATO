@@ -9,7 +9,7 @@
     { "num": 6, "id": "", "nombre": "NOVIEMBRE 16 A 22 - Camel Rough Gravel Rally", "placa": "CAMEL ROUGH GRAVEL RALLY.png", "link": "", "activo": false },
     { "num": 7, "id": "", "nombre": "NOVIEMBRE 23 A 29 - Castrol Mud & Fog Rally", "placa": "CASTROL MUD & FOG RALLY.png", "link": "", "activo": false },
     { "num": 8, "id": "", "nombre": "NOVIEMBREE 30 A 6 DIC - HB International Snow Rally", "placa": "HB INTERNATIONAL SNOW RALLY.png", "link": "", "activo": false },
-    { "num": 9, "id": "", "nombre": "DICIEMBRE 7 NOV A 13 - Total Energies Night Rally", "placa": "TOTAL ENERGIES RALLY.png", "link": "", "activo": false },
+    { "num": 9, "id": "", "nombre": "DICIEMBRE 7 NOV A 13 - Total Energies Rally", "placa": "TOTAL ENERGIES RALLY.png", "link": "", "activo": false },
     { "num": 10, "id": "", "nombre": "DICIEMBRE 14 A 20 - Rally Sparco", "placa": "RALLY SPARCO.png", "link": "", "activo": false },
     { "num": 11, "id": "", "nombre": "DICIEMBRE 20 A 27 - Rally Casino", "placa": "RALLY CASINO.png", "link": "", "activo": false },
     { "num": 12, "id": "", "nombre": "DICIEMBRE 28 A 3 ENERO - Safety Culture Gravel Rally", "placa": "SAFETY CULTURE GRAVEL RALLY.png", "link": "", "activo": false }
