@@ -2,5 +2,9 @@
   {
     "tramo": "Ponteareas 2008",
     "archivo": "NOTAS/Ponteareas_2008_Egea.ini"
+  },
+   {
+    "tramo": "La Serra d'Almos",
+    "archivo": "NOTAS/La_Serra_d'Almos_Egea.ini"
   }
 ]
