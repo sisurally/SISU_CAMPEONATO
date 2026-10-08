@@ -6,5 +6,13 @@
    {
     "tramo": "La Serra d'Almos",
     "archivo": "NOTAS/La_Serra_d'Almos_Egea.ini"
+  },
+    {
+    "tramo": "La Mussara Shakedown I",
+    "archivo": "NOTAS/La_Mussara_Shakedown_I_Egea.ini"
+  },
+    {
+    "tramo": "Brantega 2010",
+    "archivo": "NOTAS/Brantega_2010_Egea.ini"
   }
 ]
