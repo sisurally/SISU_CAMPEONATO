@@ -14,5 +14,17 @@
     {
     "tramo": "Brantega 2010",
     "archivo": "NOTAS/Brantega_2010_Egea.ini"
+  },
+    {
+    "tramo": "Valldoreix-Sant Bartumeu",
+    "archivo": "NOTAS/Valldoreix_-_Sant_Bartumeu_Egea.ini"
+  },
+   {
+    "tramo": "Vilaplana 2007",
+    "archivo": "NOTAS/Vilaplana_2007_Egea.ini"
+  },
+    {
+    "tramo": "vacarisses SS1",
+    "archivo": "NOTAS/vacarisses_SS1_Egea.ini"
   }
 ]
