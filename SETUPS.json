@@ -108,5 +108,10 @@
     "coche": "Ford Mk VI S2000",
     "tipo": "Asfalto Liso",
     "archivo": "SETUPS/ASF_LISO_FMKS2000.lsp"
+  },
+    {
+    "coche": "VW GOLF GTI GrpA",
+    "tipo": "Tierra Lisa",
+    "archivo": "SETUPS/VW GOLF GTI GrpA T_Lisa.lsp"
   }
 ]
