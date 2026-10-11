@@ -26,5 +26,21 @@
     {
     "tramo": "vacarisses SS1",
     "archivo": "NOTAS/vacarisses_SS1_Egea.ini"
+  },
+      {
+    "tramo": "Harju 2019 Egea",
+    "archivo": "NOTAS/Harju_2019_Egea.ini"
+  },
+    {
+    "tramo": "Kuomiokoski Egea",
+    "archivo": "NOTAS/Kuomiokoski_Egea.ini"
+  },
+   {
+    "tramo": "Ouninpohja 1986",
+    "archivo": "NOTAS/Ouninpohja_1986_Egea.ini"
+  },
+    {
+    "tramo": "Saalahti",
+    "archivo": "NOTAS/Saalahti_Egea.ini"
   }
 ]
