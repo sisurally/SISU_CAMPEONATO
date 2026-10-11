@@ -113,5 +113,10 @@
     "coche": "VW GOLF GTI GrpA",
     "tipo": "Tierra Lisa",
     "archivo": "SETUPS/VW GOLF GTI GrpA T_Lisa.lsp"
+  },
+      {
+    "coche": "FORD FIESTA RALLY 2",
+    "tipo": "Asfalto Liso",
+    "archivo": "SETUPS/FORD FIESTA RALLY 2 ASF_LISO_2.0.lsp"
   }
 ]
