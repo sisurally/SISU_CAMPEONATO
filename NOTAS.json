@@ -32,7 +32,7 @@
     "archivo": "NOTAS/Harju_2019_Egea.ini"
   },
     {
-    "tramo": "Kuomiokoski Egea",
+    "tramo": "Kuomiokoski",
     "archivo": "NOTAS/Kuomiokoski_Egea.ini"
   },
    {
@@ -42,5 +42,17 @@
     {
     "tramo": "Saalahti",
     "archivo": "NOTAS/Saalahti_Egea.ini"
+  },
+      {
+    "tramo": "Aguimes-Santa Lucia 2025",
+    "archivo": "NOTAS/Aguimes-Santa_Lucia_2025_Egea.ini"
+  },
+   {
+    "tramo": "Brantega 2010",
+    "archivo": "NOTAS/Brantega_2010_Egea.ini"
+  },
+    {
+    "tramo": "Olocau Gatova",
+    "archivo": "NOTAS/Olocau_Gatova_Egea.ini"
   }
 ]
