@@ -1,5 +1,45 @@
 [
   {
+    "tramo": "Verkiai 2010",
+    "archivo": "NOTAS/Verkiai_2010_Egea.ini"
+  },
+  {
+    "tramo": "Sorica",
+    "archivo": "NOTAS/Sorica_Egea.ini"
+  },
+  {
+    "tramo": "Rallysprint Hondarribia 2011",
+    "archivo": "NOTAS/Rallysprint_Hondarribia_2011_Egea.ini"
+  },
+  {
+    "tramo": "PS Valstagna",
+    "archivo": "NOTAS/PS_Valstagna_Egea.ini"
+  },
+  {
+    "tramo": "Pirka Menoko Tarmac",
+    "archivo": "NOTAS/Pirka_Menoko_Tarmac_Egea.ini"
+  },
+  {
+    "tramo": "Le barrage des gorges",
+    "archivo": "NOTAS/Le_barrage_des_gorges_Egea.ini"
+  },
+  {
+    "tramo": "Gestel I",
+    "archivo": "NOTAS/Gestel_I_Egea.ini"
+  },
+  {
+    "tramo": "Fintele",
+    "archivo": "NOTAS/Fintele_Egea.ini"
+  },
+  {
+    "tramo": "Bruchsal Unterowisheim",
+    "archivo": "NOTAS/Bruchsal_Unterowisheim_Egea.ini"
+  },
+  {
+    "tramo": "Bisanne",
+    "archivo": "NOTAS/Bisanne_Egea.ini"
+  },
+  {
     "tramo": "Ponteareas 2008",
     "archivo": "NOTAS/Ponteareas_2008_Egea.ini"
   },
