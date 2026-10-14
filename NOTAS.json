@@ -1,5 +1,17 @@
 [
   {
+    "tramo": "Pribram Reversed",
+    "archivo": "NOTAS/Pribram_Reversed_Egea.ini"
+  },
+  {
+    "tramo": "Osli-Stryckovy",
+    "archivo": "NOTAS/Osli-Stryckovy_Egea.ini"
+  },
+  {
+    "tramo": "Liptakov 1",
+    "archivo": "NOTAS/Liptakov_1_Egea.ini"
+  },
+  {
     "tramo": "Verkiai 2010",
     "archivo": "NOTAS/Verkiai_2010_Egea.ini"
   },
