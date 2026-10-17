@@ -1,5 +1,49 @@
 [
   {
+    "tramo": "Vargassence",
+    "archivo": "NOTAS/Vargassence_Egea.ini"
+  },
+  {
+    "tramo": "Torsby Shakedown",
+    "archivo": "NOTAS/Torsby_shakedown_Egea.ini"
+  },
+  {
+    "tramo": "Torsby 2018 Sprint",
+    "archivo": "NOTAS/Torsby_2018_Sprint_Egea.ini"
+  },
+  {
+    "tramo": "Torsby 2018",
+    "archivo": "NOTAS/Torsby_2018_Egea.ini"
+  },
+  {
+    "tramo": "Tikkala",
+    "archivo": "NOTAS/Tikkala_Egea.ini"
+  },
+  {
+    "tramo": "Sagen Sweden 2012",
+    "archivo": "NOTAS/Sagen_Sweden_2012_Egea.ini"
+  },
+  {
+    "tramo": "Mustaselka",
+    "archivo": "NOTAS/Mustaselka_Egea.ini"
+  },
+  {
+    "tramo": "Karlstad",
+    "archivo": "NOTAS/Karlstad_Egea.ini"
+  },
+  {
+    "tramo": "Kaihuavaara 2021",
+    "archivo": "NOTAS/Kaihuavaara_2021_Egea.ini"
+  },
+  {
+    "tramo": "Erken",
+    "archivo": "NOTAS/Erken_Egea.ini"
+  },
+  {
+    "tramo": "Blanare",
+    "archivo": "NOTAS/Blanare_Egea.ini"
+  },
+  {
     "tramo": "Pribram Reversed",
     "archivo": "NOTAS/Pribram_Reversed_Egea.ini"
   },
