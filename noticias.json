@@ -1,12 +1,4 @@
 [
-    {
-    "id": 1,
-    "fecha": "20/10/2026",
-    "titulo": "CAMBIOS EN EL CAMPEONATO ACTUAL",
-    "categoria": "OFICIAL",
-    "color": "yellow",
-    "contenido": "Tras finalizar la primera prueba REPSOL RALLY, y tener preparada la segunda; MARTINI RALLY INTERNATIONAL, tomo la acertada decisión de modificar la duración del actual campeonato para sus 10 citas restantes. Este cambio se realiza e nbase a la baja participación del evento, y entendiendo que, siendo un evento público, es de una duración extremadamente larga. Entiendo el poco tiempo de que se suele disponer y adapto el formato actual y restantes, a un formato mas corto y mas adaptado al tiempo de todos los pilotos, con el fin de atraer más participantes. La duración será de 6 a 8 etapas, incluida la Power Stage. Gracias a todos por participar y sepan perdonar las ambiciones y expectativas que por mi parte fueron desmesuradas."
-  },
   {
     "id": 1,
     "fecha": "2/10/2026",
@@ -14,5 +6,13 @@
     "categoria": "OFICIAL",
     "color": "yellow",
     "contenido": "Bienvenidos a todos los pilotos a esta primera cita del campeonato. Abrimos temporada con uno de los 4 formatos que irán rotando. Arrancamos el dia 12 de Octubre con la primera cita. El REPSOL Rally. 148 kM Repartidos en 6 Legs sobre Asfalto puro. ¿Quien será el primer vencedor del campeonato? Corre, deja huella y pasa a formar parte del salón de la fama. ¡Mucho gas a todos!"
+  },
+       {
+    "id": 1,
+    "fecha": "20/10/2026",
+    "titulo": "CAMBIOS EN EL CAMPEONATO ACTUAL",
+    "categoria": "OFICIAL",
+    "color": "yellow",
+    "contenido": "Tras finalizar la primera prueba REPSOL RALLY, y tener preparada la segunda; MARTINI RALLY INTERNATIONAL, tomo la acertada decisión de modificar la duración del actual campeonato para sus 10 citas restantes. Este cambio se realiza e nbase a la baja participación del evento, y entendiendo que, siendo un evento público, es de una duración extremadamente larga. Entiendo el poco tiempo de que se suele disponer y adapto el formato actual y restantes, a un formato mas corto y mas adaptado al tiempo de todos los pilotos, con el fin de atraer más participantes. La duración será de 6 a 8 etapas, incluida la Power Stage. Gracias a todos por participar y sepan perdonar las ambiciones y expectativas que por mi parte fueron desmesuradas."
   }
 ]
