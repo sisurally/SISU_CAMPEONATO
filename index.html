@@ -37,7 +37,7 @@
         <!-- Imagen de la Placa del Rally y Botón de Enlace -->
         <div id="contenedor-placa" class="flex flex-col items-center mb-6 hidden">
             <img id="imagen-placa" src="" alt="Placa del Rally" class="max-h-48 md:max-h-64 object-contain drop-shadow-xl rounded-lg mb-4">
-            
+
             <a id="btn-link-rally" href="#" target="_blank" class="hidden inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-gray-950 font-extrabold px-6 py-2.5 rounded-full transition-all shadow-lg hover:scale-105 uppercase text-xs md:text-sm tracking-wide">
                 <span>🏁​</span> ROADBOOK
             </a>
@@ -50,18 +50,14 @@
                 Información
             </button>
             <button id="btn-noticias" onclick="cambiarPestana('noticias')" 
-                class="relative bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
+                class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
                 Noticias
-                <!-- Indicador parpadeante (oculto por defecto con 'hidden') -->
-                <span id="badge-noticias" class="hidden absolute -top-1 -right-1 flex h-3 w-3">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                </span>
             </button>
             <!-- Botón CALENDARIO -->
 <button id="btn-calendario" onclick="cambiarPestana('calendario')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
     Calendario
 </button>
+
 <!-- Botón CAMPEONATOS -->
 <button id="btn-campeonatos" onclick="cambiarPestana('campeonatos')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
     Campeonatos
@@ -197,14 +193,16 @@
     <h2 class="text-xl font-extrabold text-yellow-400 mb-6 flex items-center gap-2 border-b border-gray-800 pb-3">
         <span>🏆</span> FORMATOS DE CAMPEONATO
     </h2>
-    
+
     <div class="space-y-6">
         <!-- Variante 1: Tracción -->
         <div class="bg-gray-950 p-5 rounded-lg border border-gray-800">
             <h3 class="text-lg font-bold text-yellow-500 mb-2">1. TRACCIÓN</h3>
             <p class="text-sm text-gray-400 leading-relaxed">
+                [En el modo de campeonato TRACCIÓN, los pilotos pueden competir libremente en monturas de tracción total, (AWD), delantera, (FWD), y trasera, (RWD), de entre los vehículos disponibles. 
                 En el modo de campeonato TRACCIÓN, los pilotos pueden competir libremente en monturas de tracción total, (AWD), delantera, (FWD), y trasera, (RWD), de entre los vehículos disponibles. 
 
+Las clasificaciones son: GENERAL + AWD + FWD + RWD]
 Las clasificaciones son: GENERAL + AWD + FWD + RWD
             </p>
         </div>
@@ -213,8 +211,10 @@ Las clasificaciones son: GENERAL + AWD + FWD + RWD
         <div class="bg-gray-950 p-5 rounded-lg border border-gray-800">
             <h3 class="text-lg font-bold text-yellow-500 mb-2">2. MITO & FURIA</h3>
             <p class="text-sm text-gray-400 leading-relaxed">
+                [En este formato, los pilotos nuevamente, pueden elegir libremente correr con vehículos ue marcaron época, tales como los S2000, los KIT CAR, y GRUPO B.
                 En este formato, los pilotos nuevamente, pueden elegir libremente correr con vehículos que marcaron época, tales como los S2000, los KIT CAR, y GRUPO B.
 
+Las clasificaciones son: GENERAL + S2000 + KIT CAR + GRUPO B]
 Las clasificaciones son: GENERAL + S2000 + KIT CAR + GRUPO B
             </p>
         </div>
@@ -223,10 +223,12 @@ Las clasificaciones son: GENERAL + S2000 + KIT CAR + GRUPO B
         <div class="bg-gray-950 p-5 rounded-lg border border-gray-800">
             <h3 class="text-lg font-bold text-yellow-500 mb-2">3. DENOSTADOS</h3>
             <p class="text-sm text-gray-400 leading-relaxed">
+                [La joya reivindicativa y divertida del ciclo organizativo de SRC. Trata de competir con los coches menos utilizados y más denostados del plugin de RSF. 
                 La joya reivindicativa y divertida del ciclo organizativo de SRC. Trata de competir con los coches menos utilizados y más denostados del plugin de RSF. 
 
 Éstos se han englobado en 3 categorías en base a similitudes técnicas/específicas. Se corre libremente y se configuran 3 clasificaciones como es norma.
 
+GENERAL + MICRO + MID + MAXI]
 GENERAL + MICRO + MID + MAXI
             </p>
         </div>
@@ -330,7 +332,7 @@ GENERAL + MICRO + MID + MAXI
         <span class="text-gray-600 text-xl font-bold">•</span>
         <a href="https://www.wrsim.com/#" target="_blank" rel="noopener noreferrer" class="text-2xl font-black text-yellow-400 hover:text-yellow-300 transition-colors tracking-wide">WRSim</a>
     </div>
-        
+
         <p>© SISU RALLY COMPETICIÓN - RBR - RSF Plugin</p>
         <div class="flex items-center gap-2 bg-gray-800/80 px-4 py-1.5 rounded-full border border-gray-700 text-gray-300 font-semibold">
             <span>👁️ Visitas a la web:</span>
@@ -346,7 +348,7 @@ GENERAL + MICRO + MID + MAXI
         let historicoRallies = [];
         let catRallySeleccionada = 'TODAS';
         let catGeneralSeleccionada = 'TODAS';
-        
+
         const puntosEscala = [50, 45, 42, 40, 38, 36, 34, 32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 1];
         // Escala oficial Power Stage: 8 a 1 punto (8 primeros clasificados)
         const puntosPowerStageEscala = [8, 7, 6, 5, 4, 3, 2, 1];
@@ -359,7 +361,7 @@ GENERAL + MICRO + MID + MAXI
             const btnTrofeos = document.getElementById('btn-trofeos');
             const btnNoticias = document.getElementById('btn-noticias');
             const btnInfo = document.getElementById('btn-info');
-            
+
             const vistaRally = document.getElementById('vista-rally');
             const vistaGeneral = document.getElementById('vista-general');
             const vistaCalendario = document.getElementById('vista-calendario');
@@ -367,7 +369,7 @@ GENERAL + MICRO + MID + MAXI
             const vistaTrofeos = document.getElementById('vista-trofeos');
             const vistaNoticias = document.getElementById('vista-noticias');
             const vistaInfo = document.getElementById('vista-info');
-            
+
             const contPlaca = document.getElementById('contenedor-placa');
             const selectorCont = document.getElementById('select-rally-container');
 
@@ -497,72 +499,36 @@ function cargarTrofeos() {
         }
 
         async function cargarNoticias() {
-    const contenedor = document.getElementById('contenedor-noticias');
-    try {
-        const res = await fetch('noticias.json?v=' + new Date().getTime());
-        if (!res.ok) throw new Error('No noticias');
-        const noticias = await res.json();
-        
-        if (noticias.length === 0) {
-            contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay comunicados publicados.</p>';
-            return;
+            const contenedor = document.getElementById('contenedor-noticias');
+            try {
+                const res = await fetch('noticias.json?v=' + new Date().getTime());
+                if (!res.ok) throw new Error('No noticias');
+                const noticias = await res.json();
+
+                if (noticias.length === 0) {
+                    contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay comunicados publicados.</p>';
+                    return;
+                }
+
+                const noticiasOrdenadas = [...noticias].reverse();
+
+                contenedor.innerHTML = noticiasOrdenadas.map(n => `
+                    <div class="bg-gray-900/80 border-l-4 ${n.color === 'yellow' ? 'border-yellow-500' : 'border-blue-500'} p-5 rounded-r-xl shadow-lg">
+                        <div class="flex flex-wrap justify-between items-center mb-2 gap-2">
+                            <span class="text-xs font-bold px-2.5 py-0.5 rounded ${n.color === 'yellow' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'} uppercase">
+                                ${n.categoria || 'ANUNCIO'}
+                            </span>
+                            <span class="text-xs text-gray-400 font-mono">📅 ${n.fecha}</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-white mb-2">${n.titulo}</h3>
+                        <p class="text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-line">${n.contenido}</p>
+                    </div>
+                `).join('');
+
+            } catch (e) {
+                contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay avisos publicados en este momento.</p>';
+            }
         }
-
-        const noticiasOrdenadas = [...noticias].reverse();
-
-        // 1. Comprobamos si hay noticias nuevas para mostrar el aviso en el menú
-        verificarNoticiasNuevas(noticiasOrdenadas);
-
-        // 2. Al entrar y cargar las noticias, las marcamos automáticamente como leídas (apaga el piloto)
-        marcarNoticiasComoLeidas(noticiasOrdenadas);
-
-        contenedor.innerHTML = noticiasOrdenadas.map(n => `
-            <div class="bg-gray-900/80 border-l-4 ${n.color === 'yellow' ? 'border-yellow-500' : 'border-blue-500'} p-5 rounded-r-xl shadow-lg">
-                <div class="flex flex-wrap justify-between items-center mb-2 gap-2">
-                    <span class="text-xs font-bold px-2.5 py-0.5 rounded ${n.color === 'yellow' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'} uppercase">
-                        ${n.categoria || 'ANUNCIO'}
-                    </span>
-                    <span class="text-xs text-gray-400 font-mono">📅 ${n.fecha}</span>
-                </div>
-                <h3 class="text-lg md:text-xl font-bold text-white mb-2">${n.titulo}</h3>
-                <p class="text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-line">${n.contenido}</p>
-            </div>
-        `).join('');
-
-    } else (e) { // Ojo, mantén tu bloque catch original si usa catch (e)
-        contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay avisos publicados en este momento.</p>';
-    }
-}
-
-// --- Funciones auxiliares para el indicador parpadeante ---
-
-function verificarNoticiasNuevas(listaNoticias) {
-    if (!listaNoticias || listaNoticias.length === 0) return;
-
-    // Identificador único basado en la ID o la fecha del comunicado más reciente
-    const ultimaNoticiaID = listaNoticias[0].id || listaNoticias[0].fecha; 
-    const noticiaLeida = localStorage.getItem('ultima_noticia_leida');
-
-    const badge = document.getElementById('badge-noticias');
-    if (!badge) return;
-
-    // Si la última noticia no coincide con la guardada, encendemos el parpadeo
-    if (ultimaNoticiaID !== noticiaLeida) {
-        badge.classList.remove('hidden');
-    } else {
-        badge.classList.add('hidden');
-    }
-}
-
-function marcarNoticiasComoLeidas(listaNoticias) {
-    if (listaNoticias && listaNoticias.length > 0) {
-        const ultimaNoticiaID = listaNoticias[0].id || listaNoticias[0].fecha;
-        localStorage.setItem('ultima_noticia_leida', ultimaNoticiaID);
-        
-        const badge = document.getElementById('badge-noticias');
-        if (badge) badge.classList.add('hidden');
-    }
-}
 
         Promise.all([
             fetch('config.json').then(res => res.json()).catch(() => ({ rallys: [] })),
@@ -573,7 +539,7 @@ function marcarNoticiasComoLeidas(listaNoticias) {
 
             const selector = document.getElementById('select-rally');
             selector.innerHTML = '';
-            
+
             if (cfg.rallys && cfg.rallys.length > 0) {
                 cfg.rallys.forEach((r, idx) => {
                     const option = document.createElement('option');
@@ -852,19 +818,6 @@ function marcarNoticiasComoLeidas(listaNoticias) {
                 tbodyGen.innerHTML += row;
             });
         }
-
-        // Comprobación automática al arrancar la página para que el piloto del menú sepa si debe parpadear
-document.addEventListener("DOMContentLoaded", () => {
-    fetch('noticias.json?v=' + new Date().getTime())
-        .then(res => res.json())
-        .then(noticias => {
-            if (noticias && noticias.length > 0) {
-                const noticiasOrdenadas = [...noticias].reverse();
-                verificarNoticiasNuevas(noticiasOrdenadas);
-            }
-        })
-        .catch(err => console.log("Comprobación inicial de noticias en segundo plano sin novedad."));
-});
 
         // CONTADOR LOCAL
         try {
