@@ -599,7 +599,7 @@ function cargarTrofeos() {
             mapaCochesGlobal = coches;
 
             const selector = document.getElementById('select-rally');
-            selector.innerHTML = '';
+            if (selector) selector.innerHTML = '';
             
             if (cfg.rallys && cfg.rallys.length > 0) {
                 cfg.rallys.forEach((r, idx) => {
@@ -607,7 +607,7 @@ function cargarTrofeos() {
                     const valNum = String(r.num !== undefined ? r.num : (idx + 1));
                     option.value = valNum;
                     option.textContent = r.nombre + (r.activo ? ' (En curso)' : '');
-                    selector.appendChild(option);
+                    if (selector) selector.appendChild(option);
                 });
 
                 // 1. Identificamos el rally ACTIVO para la cabecera, placa y roadbook
@@ -615,19 +615,17 @@ function cargarTrofeos() {
                 const numActivo = activo.num !== undefined ? activo.num : (cfg.rallys.indexOf(activo) + 1);
 
                 // 2. Buscamos el último rally anterior con resultados para mostrarlo por defecto en la tabla
-                // Si el activo es el primero, cargamos el primero; si es posterior, cargamos el anterior (o el penúltimo)
                 let indiceActivo = cfg.rallys.findIndex(r => r.activo);
                 let rallyParaTabla = activo;
                 let numTabla = numActivo;
 
                 if (indiceActivo > 0) {
-                    // Por defecto mostramos el rally anterior al activo (el último disputado)
                     rallyParaTabla = cfg.rallys[indiceActivo - 1];
                     numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : indiceActivo;
                 }
 
                 // Seteamos el desplegable visualmente al rally de la tabla por defecto
-                selector.value = String(numTabla);
+                if (selector) selector.value = String(numTabla);
 
                 // Cargamos la cabecera/placa del ACTIVO, pero los resultados del anterior en la tabla
                 cargarCabeceraRally(activo, numActivo);
@@ -637,6 +635,8 @@ function cargarTrofeos() {
             } else {
                 cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
             }
+        }).catch(err => {
+            console.error("Error al cargar la configuración inicial:", err);
         });
 
         function seleccionarRally(valNum) {
