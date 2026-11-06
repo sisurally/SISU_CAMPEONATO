@@ -34,11 +34,11 @@
             <p class="text-gray-400 text-sm md:text-base">🔰 Tiempos y clasificaciones oficiales. RESULTADOS DOMINGO: 19:00H Aprox 🔰</p>
         </header>
 
-        <!-- Imagen de la Placa del Rally y Botón de Enlace Fijo -->
-        <div id="contenedor-placa" class="flex flex-col items-center mb-6">
-           <img id="imagen-placa" src="" alt="Placa del Rally" class="max-h-48 md:max-h-64 object-contain drop-shadow-xl rounded-lg mb-4">
+        <!-- Imagen de la Placa del Rally y Botón de Enlace -->
+        <div id="contenedor-placa" class="flex flex-col items-center mb-6 hidden">
+            <img id="imagen-placa" src="" alt="Placa del Rally" class="max-h-48 md:max-h-64 object-contain drop-shadow-xl rounded-lg mb-4">
             
-            <a href="https://www.rallysimfans.hu/rbr/rally_online.php?centerbox=rally_list_details.php&rally_id=105293" target="_blank" class="inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-gray-950 font-extrabold px-6 py-2.5 rounded-full transition-all shadow-lg hover:scale-105 uppercase text-xs md:text-sm tracking-wide">
+            <a id="btn-link-rally" href="#" target="_blank" class="hidden inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-gray-950 font-extrabold px-6 py-2.5 rounded-full transition-all shadow-lg hover:scale-105 uppercase text-xs md:text-sm tracking-wide">
                 <span>🏁​</span> ROADBOOK
             </a>
         </div>
@@ -72,7 +72,7 @@
             <div class="flex flex-wrap gap-2 sm:gap-3">
                 <button id="btn-rally" onclick="cambiarPestana('rally')" 
                     class="active-tab px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                    Último Rally
+                    Rally
                 </button>
                 <button id="btn-general" onclick="cambiarPestana('general')" 
                     class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
@@ -375,25 +375,6 @@
                 vistaRally.classList.remove('hidden');
                 contPlaca.classList.remove('hidden');
                 selectorCont.classList.remove('hidden');
-
-                // CORRECCIÓN: Al pulsar el botón "Último Rally", cargamos automáticamente el último rally disputado con resultados
-                if (configGlobal && configGlobal.rallys) {
-                    const selector = document.getElementById('select-rally');
-                    let indiceActivo = configGlobal.rallys.findIndex(r => r.activo);
-                    let rallyParaTabla = configGlobal.rallys[0];
-                    let numTabla = 1;
-
-                    if (indiceActivo > 0) {
-                        rallyParaTabla = configGlobal.rallys[indiceActivo - 1];
-                        numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : indiceActivo;
-                    } else if (indiceActivo === -1 && configGlobal.rallys.length > 0) {
-                        rallyParaTabla = configGlobal.rallys[configGlobal.rallys.length - 1];
-                        numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : configGlobal.rallys.length;
-                    }
-
-                    if (selector) selector.value = String(numTabla);
-                    cargarRallyDesdeCSV(rallyParaTabla, numTabla);
-                }
             } else if (vista === 'general') {
                 btnGeneral.className = claseActiva;
                 vistaGeneral.classList.remove('hidden');
@@ -632,19 +613,7 @@ function cargarTrofeos() {
 
                 const activo = cfg.rallys.find(r => r.activo) || cfg.rallys[0];
                 const numActivo = activo.num !== undefined ? activo.num : (cfg.rallys.indexOf(activo) + 1);
-                
-                let indiceActivo = cfg.rallys.findIndex(r => r.activo);
-                let rallyParaTabla = activo;
-                let numTabla = numActivo;
-
-                if (indiceActivo > 0) {
-                    rallyParaTabla = cfg.rallys[indiceActivo - 1];
-                    numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : indiceActivo;
-                }
-
-                if (selector) selector.value = String(numTabla);
-
-                cargarRallyDesdeCSV(rallyParaTabla, numTabla);
+                cargarRallyDesdeCSV(activo, numActivo);
                 cargarTodosLosRalliesParaGeneral();
             } else {
                 cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
@@ -673,14 +642,22 @@ function cargarTrofeos() {
         async function cargarRallyDesdeCSV(rallyInfo, numOrden) {
             const imgPlaca = document.getElementById('imagen-placa');
             const contPlaca = document.getElementById('contenedor-placa');
+            const btnLink = document.getElementById('btn-link-rally');
 
-            // La placa refleja el rally que estás visualizando (el seleccionado o el último)
             if (rallyInfo && rallyInfo.placa && rallyInfo.placa.trim() !== '') {
                 imgPlaca.src = rallyInfo.placa;
                 contPlaca.classList.remove('hidden');
             } else {
                 imgPlaca.src = '';
                 contPlaca.classList.add('hidden');
+            }
+
+            if (rallyInfo && rallyInfo.link && rallyInfo.link.trim() !== '') {
+                btnLink.href = rallyInfo.link;
+                btnLink.classList.remove('hidden');
+            } else {
+                btnLink.href = '#';
+                btnLink.classList.add('hidden');
             }
 
             document.getElementById('titulo-rally').innerHTML = `<span>🏁</span> ${rallyInfo.nombre || ('Rally ' + numOrden)}`;
