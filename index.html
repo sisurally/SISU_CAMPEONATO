@@ -50,9 +50,14 @@
                 Información
             </button>
             <button id="btn-noticias" onclick="cambiarPestana('noticias')" 
-                class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                Noticias
-            </button>
+    class="relative bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
+    Noticias
+    <!-- Indicador parpadeante (oculto por defecto con 'hidden') -->
+    <span id="badge-noticias" class="hidden absolute -top-1 -right-1 flex h-3 w-3">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+    </span>
+</button>
             <!-- Botón CALENDARIO -->
 <button id="btn-calendario" onclick="cambiarPestana('calendario')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
     Calendario
@@ -493,36 +498,40 @@ function cargarTrofeos() {
         }
 
         async function cargarNoticias() {
-            const contenedor = document.getElementById('contenedor-noticias');
-            try {
-                const res = await fetch('noticias.json?v=' + new Date().getTime());
-                if (!res.ok) throw new Error('No noticias');
-                const noticias = await res.json();
-                
-                if (noticias.length === 0) {
-                    contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay comunicados publicados.</p>';
-                    return;
-                }
-
-                const noticiasOrdenadas = [...noticias].reverse();
-
-                contenedor.innerHTML = noticiasOrdenadas.map(n => `
-                    <div class="bg-gray-900/80 border-l-4 ${n.color === 'yellow' ? 'border-yellow-500' : 'border-blue-500'} p-5 rounded-r-xl shadow-lg">
-                        <div class="flex flex-wrap justify-between items-center mb-2 gap-2">
-                            <span class="text-xs font-bold px-2.5 py-0.5 rounded ${n.color === 'yellow' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'} uppercase">
-                                ${n.categoria || 'ANUNCIO'}
-                            </span>
-                            <span class="text-xs text-gray-400 font-mono">📅 ${n.fecha}</span>
-                        </div>
-                        <h3 class="text-lg md:text-xl font-bold text-white mb-2">${n.titulo}</h3>
-                        <p class="text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-line">${n.contenido}</p>
-                    </div>
-                `).join('');
-
-            } catch (e) {
-                contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay avisos publicados en este momento.</p>';
-            }
+    const contenedor = document.getElementById('contenedor-noticias');
+    try {
+        const res = await fetch('noticias.json?v=' + new Date().getTime());
+        if (!res.ok) throw new Error('No noticias');
+        const noticias = await res.json();
+        
+        if (noticias.length === 0) {
+            contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay comunicados publicados.</p>';
+            return;
         }
+
+        const noticiasOrdenadas = [...noticias].reverse();
+
+        // --- AQUÍ DEBEN IR LAS DOS LÍNEAS ---
+        verificarNoticiasNuevas(noticiasOrdenadas);
+        marcarNoticiasComoLeidas(noticiasOrdenadas);
+
+        contenedor.innerHTML = noticiasOrdenadas.map(n => `
+            <div class="bg-gray-900/80 border-l-4 ${n.color === 'yellow' ? 'border-yellow-500' : 'border-blue-500'} p-5 rounded-r-xl shadow-lg">
+                <div class="flex flex-wrap justify-between items-center mb-2 gap-2">
+                    <span class="text-xs font-bold px-2.5 py-0.5 rounded ${n.color === 'yellow' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'} uppercase">
+                        ${n.categoria || 'ANUNCIO'}
+                    </span>
+                    <span class="text-xs text-gray-400 font-mono">📅 ${n.fecha}</span>
+                </div>
+                <h3 class="text-lg md:text-xl font-bold text-white mb-2">${n.titulo}</h3>
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-line">${n.contenido}</p>
+            </div>
+        `).join('');
+
+    } catch (e) {
+        contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay avisos publicados en este momento.</p>';
+    }
+}
 
         Promise.all([
             fetch('config.json').then(res => res.json()).catch(() => ({ rallys: [] })),
@@ -813,6 +822,46 @@ function cargarTrofeos() {
             });
         }
 
+        // --- SISTEMA DE AVISO DE NOTICIAS NUEVAS ---
+
+function verificarNoticiasNuevas(listaNoticias) {
+    if (!listaNoticias || listaNoticias.length === 0) return;
+
+    const ultimaNoticiaID = listaNoticias[0].id || listaNoticias[0].fecha; 
+    const noticiaLeida = localStorage.getItem('ultima_noticia_leida');
+
+    const badge = document.getElementById('badge-noticias');
+    if (!badge) return;
+
+    if (ultimaNoticiaID !== noticiaLeida) {
+        badge.classList.remove('hidden');
+    } else {
+        badge.classList.add('hidden');
+    }
+}
+
+function marcarNoticiasComoLeidas(listaNoticias) {
+    if (listaNoticias && listaNoticias.length > 0) {
+        const ultimaNoticiaID = listaNoticias[0].id || listaNoticias[0].fecha;
+        localStorage.setItem('ultima_noticia_leida', ultimaNoticiaID);
+        
+        const badge = document.getElementById('badge-noticias');
+        if (badge) badge.classList.add('hidden');
+    }
+}
+
+// Comprobación automática al arrancar la página
+document.addEventListener("DOMContentLoaded", () => {
+    fetch('noticias.json?v=' + new Date().getTime())
+        .then(res => res.json())
+        .then(noticias => {
+            if (noticias && noticias.length > 0) {
+                const noticiasOrdenadas = [...noticias].reverse();
+                verificarNoticiasNuevas(noticiasOrdenadas);
+            }
+        })
+        .catch(err => console.log("Comprobación inicial de noticias en segundo plano sin novedad."));
+});
         // CONTADOR LOCAL
         try {
             let visitas = localStorage.getItem('visitas_rally_src') || 100;
