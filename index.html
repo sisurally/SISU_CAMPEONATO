@@ -49,7 +49,7 @@
                 class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
                 Información
             </button>
-            <button id="btn-noticias" onclick="cambiarPestana('noticias')" 
+            <button id="btn-noticias" onclick="cambiarPestana('noticias'); marcarNoticiasComoLeidas();" 
     class="relative bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
     Noticias
     <!-- Indicador parpadeante (oculto por defecto con 'hidden') -->
@@ -840,13 +840,21 @@ function verificarNoticiasNuevas(listaNoticias) {
     }
 }
 
-function marcarNoticiasComoLeidas(listaNoticias) {
-    if (listaNoticias && listaNoticias.length > 0) {
-        const ultimaNoticiaID = listaNoticias[0].id || listaNoticias[0].fecha;
-        localStorage.setItem('ultima_noticia_leida', ultimaNoticiaID);
-        
-        const badge = document.getElementById('badge-noticias');
-        if (badge) badge.classList.add('hidden');
+// Ahora esta función solo apaga el punto y guarda que ya está leído
+function marcarNoticiasComoLeidas() {
+    const badge = document.getElementById('badge-noticias');
+    if (badge) {
+        badge.classList.add('hidden');
+        // Guardamos en la memoria del navegador que ya se leyó la última noticia
+        fetch('noticias.json?v=' + new Date().getTime())
+            .then(res => res.json())
+            .then(noticias => {
+                if (noticias && noticias.length > 0) {
+                    const noticiasOrdenadas = [...noticias].reverse();
+                    const ultimaNoticiaID = noticiasOrdenadas[0].id || noticiasOrdenadas[0].fecha;
+                    localStorage.setItem('ultima_noticia_leida', ultimaNoticiaID);
+                }
+            }).catch(e => {});
     }
 }
 
