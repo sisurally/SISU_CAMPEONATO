@@ -1,894 +1,898 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISU RALLY COMPETICIÓN</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .active-tab {
-            background-color: #eab308;
-            color: #000;
-        }
-        .active-subtab {
-            background-color: #374151;
-            color: #facc15;
-            border-color: #eab308;
-        }
-    </style>
-</head>
-<body class="bg-gray-900 text-gray-100 min-h-screen p-4 md:p-8 font-sans flex flex-col justify-between">
-
-    <div class="max-w-5xl mx-auto w-full">
-        <!-- Cabecera -->
-        <header class="text-center mb-6 border-b border-gray-800 pb-6 flex flex-col items-center">
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-4 w-full">
-                <img src="logo_src.png" alt="SRC Logo" class="w-56 md:w-72 max-w-full h-auto object-contain drop-shadow-lg">
-                <div class="hidden sm:block h-12 w-px bg-gray-700"></div>
-                <img src="logo_rbr.png" alt="RBR Logo" class="w-56 md:w-72 max-w-full h-auto object-contain drop-shadow-lg">
-            </div>
-
-            <h1 class="text-3xl md:text-5xl font-extrabold text-yellow-500 uppercase tracking-wider mb-2">
-                SRC I CAMPEONATO TRACCIÓN 2026
-            </h1>
-            <p class="text-gray-400 text-sm md:text-base">🔰 Tiempos y clasificaciones oficiales. RESULTADOS DOMINGO: 19:00H Aprox 🔰</p>
-        </header>
-
-        <!-- Imagen de la Placa del Rally y Botón de Enlace -->
-        <div id="contenedor-placa" class="flex flex-col items-center mb-6 hidden">
-            <img id="imagen-placa" src="" alt="Placa del Rally" class="max-h-48 md:max-h-64 object-contain drop-shadow-xl rounded-lg mb-4">
-            
-            <a id="btn-link-rally" href="#" target="_blank" class="hidden inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-gray-950 font-extrabold px-6 py-2.5 rounded-full transition-all shadow-lg hover:scale-105 uppercase text-xs md:text-sm tracking-wide">
-                <span>🏁​</span> ROADBOOK
-            </a>
+<div class="max-w-5xl mx-auto w-full">
+    <!-- Cabecera -->
+    <header class="text-center mb-6 border-b border-gray-800 pb-6 flex flex-col items-center">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-4 w-full">
+            <img src="logo_src.png" alt="SRC Logo" class="w-56 md:w-72 max-w-full h-auto object-contain drop-shadow-lg">
+            <div class="hidden sm:block h-12 w-px bg-gray-700"></div>
+            <img src="logo_rbr.png" alt="RBR Logo" class="w-56 md:w-72 max-w-full h-auto object-contain drop-shadow-lg">
         </div>
 
-        <!-- BLOQUE 1: Navegación Global / Secciones de la Web -->
-        <div class="mb-4 bg-gray-800/50 p-4 rounded-xl border border-gray-700/50 flex flex-wrap justify-center sm:justify-start items-center gap-2 sm:gap-3">
-            <button id="btn-info" onclick="cambiarPestana('info')" 
-                class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                Información
+        <h1 class="text-3xl md:text-5xl font-extrabold text-yellow-500 uppercase tracking-wider mb-2">
+            SRC I CAMPEONATO TRACCIÓN 2026
+        </h1>
+        <p class="text-gray-400 text-sm md:text-base">🔰 Tiempos y clasificaciones oficiales. RESULTADOS DOMINGO: 19:00H Aprox 🔰</p>
+    </header>
+
+    <!-- Imagen de la Placa del Rally y Botón de Enlace -->
+    <div id="contenedor-placa" class="flex flex-col items-center mb-6 hidden">
+        <img id="imagen-placa" src="" alt="Placa del Rally" class="max-h-48 md:max-h-64 object-contain drop-shadow-xl rounded-lg mb-4">
+        
+        <a id="btn-link-rally" href="#" target="_blank" class="hidden inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-gray-950 font-extrabold px-6 py-2.5 rounded-full transition-all shadow-lg hover:scale-105 uppercase text-xs md:text-sm tracking-wide">
+            <span>🏁​</span> ROADBOOK
+        </a>
+    </div>
+
+    <!-- BLOQUE 1: Navegación Global / Secciones de la Web -->
+    <div class="mb-4 bg-gray-800/50 p-4 rounded-xl border border-gray-700/50 flex flex-wrap justify-center sm:justify-start items-center gap-2 sm:gap-3">
+        <button id="btn-info" onclick="cambiarPestana('info')" 
+            class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
+            Información
+        </button>
+        <button id="btn-noticias" onclick="cambiarPestana('noticias')" 
+            class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
+            Noticias
+        </button>
+        <button id="btn-setups" onclick="cambiarPestana('setups')" 
+            class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
+            Setups
+        </button>
+        <button id="btn-notas" onclick="cambiarPestana('notas')" 
+            class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
+            Notas
+        </button>
+        <button id="btn-trofeos" onclick="cambiarPestana('trofeos')" 
+            class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
+            Sala de trofeos
+        </button>
+    </div>
+
+    <!-- BLOQUE 2: Selección de Vista de Campeonatos / Selector de Rally -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6 bg-gray-800/50 p-4 rounded-xl border border-gray-700/50">
+        <div class="flex flex-wrap gap-2 sm:gap-3">
+            <button id="btn-rally" onclick="cambiarPestana('rally')" 
+                class="active-tab px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
+                Último Rally
             </button>
-            <button id="btn-noticias" onclick="cambiarPestana('noticias')" 
+            <button id="btn-general" onclick="cambiarPestana('general')" 
                 class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                Noticias
-            </button>
-            <button id="btn-setups" onclick="cambiarPestana('setups')" 
-                class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                Setups
-            </button>
-            <button id="btn-notas" onclick="cambiarPestana('notas')" 
-                class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                Notas
-            </button>
-            <button id="btn-trofeos" onclick="cambiarPestana('trofeos')" 
-                class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                Sala de trofeos
+                Clasificación General
             </button>
         </div>
 
-        <!-- BLOQUE 2: Selección de Vista de Campeonatos / Selector de Rally -->
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6 bg-gray-800/50 p-4 rounded-xl border border-gray-700/50">
-            <div class="flex flex-wrap gap-2 sm:gap-3">
-                <button id="btn-rally" onclick="cambiarPestana('rally')" 
-                    class="active-tab px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                    Último Rally
-                </button>
-                <button id="btn-general" onclick="cambiarPestana('general')" 
-                    class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                    Clasificación General
-                </button>
-            </div>
-
-            <div id="select-rally-container" class="flex items-center gap-2">
-                <label for="select-rally" class="text-sm font-semibold text-gray-300">Ver Rally:</label>
-                <select id="select-rally" onchange="seleccionarRally(this.value)" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg p-2.5 focus:ring-yellow-500 focus:border-yellow-500 font-semibold">
-                </select>
-            </div>
-        </div>
-
-        <!-- TABLA: RESULTADOS DEL RALLY -->
-        <div id="vista-rally" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                <h2 id="titulo-rally" class="text-xl font-bold text-yellow-400 flex items-center gap-2">
-                    <span>🏁</span> Resultados del Rally
-                </h2>
-
-                <div class="flex flex-wrap gap-2">
-                    <button id="btn-cat-todas" onclick="filtrarCategoriaRally('TODAS')" class="active-subtab border px-3 py-1 rounded-md text-xs font-bold transition-all">
-                        GENERAL
-                    </button>
-                    <button id="btn-cat-4wd" onclick="filtrarCategoriaRally('4WD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
-                        4WD
-                    </button>
-                    <button id="btn-cat-fwd" onclick="filtrarCategoriaRally('FWD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
-                        FWD
-                    </button>
-                    <button id="btn-cat-rwd" onclick="filtrarCategoriaRally('RWD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
-                        RWD
-                    </button>
-                </div>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="text-gray-400 border-b border-gray-700 text-sm">
-                            <th class="py-3 px-2 text-center">Pos</th>
-                            <th class="py-3 px-4">Piloto</th>
-                            <th class="py-3 px-4">Vehículo</th>
-                            <th class="py-3 px-4 text-center">Cat.</th>
-                            <th class="py-3 px-4 text-right">Tiempo Total</th>
-                            <th class="py-3 px-4 text-center text-yellow-400">Puntos</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla-rally-body" class="divide-y divide-gray-700/50">
-                        <tr>
-                            <td colspan="6" class="text-center py-8 text-gray-500">Cargando resultados...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- TABLA: CLASIFICACIÓN GENERAL DEL CAMPEONATO -->
-        <div id="vista-general" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2">
-                    <span>🏆</span> Tabla General del Campeonato
-                </h2>
-
-                <div class="flex flex-wrap gap-2">
-                    <button id="btn-gen-todas" onclick="filtrarCategoriaGeneral('TODAS')" class="active-subtab border px-3 py-1 rounded-md text-xs font-bold transition-all">
-                        GENERAL
-                    </button>
-                    <button id="btn-gen-4wd" onclick="filtrarCategoriaGeneral('4WD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
-                        GENERAL 4WD
-                    </button>
-                    <button id="btn-gen-fwd" onclick="filtrarCategoriaGeneral('FWD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
-                        GENERAL FWD
-                    </button>
-                    <button id="btn-gen-rwd" onclick="filtrarCategoriaGeneral('RWD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
-                        GENERAL RWD
-                    </button>
-                </div>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="text-gray-400 border-b border-gray-700 text-sm">
-                            <th class="py-3 px-2 text-center">Pos</th>
-                            <th class="py-3 px-4">Piloto</th>
-                            <th class="py-3 px-4 text-center">Rallies Disputados</th>
-                            <th class="py-3 px-4 text-center text-yellow-400">Puntos Totales</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla-general-body" class="divide-y divide-gray-700/50">
-                        <tr>
-                            <td colspan="4" class="text-center py-8 text-gray-500">Aún no hay puntos acumulados en la general.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- SECCIÓN: SETUPS -->
-        <div id="vista-setups" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
-            <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
-                <span>⚙️</span> Descarga de Setups
-            </h2>
-
-            <!-- Subtexto explicativo de Setups -->
-  <p class="text-sm text-gray-300 mt-2 mb-4">
-    Setups personales. Aptos y válidos, si no te sirven 100%, son una buena base.
-  </p>
-            
-            <div id="lista-setups">
-                <p class="text-gray-400 p-4 text-center">Cargando setups...</p>
-            </div>
-        </div>
-
-        <!-- SECCIÓN: NOTAS -->
-        <div id="vista-notas" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
-            <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
-                <span>📝</span> Descarga de Pacenotes / Notas
-            </h2>
-
-            <!-- Subtexto explicativo de Notas -->
-  <div class="text-sm text-gray-300 mt-2 mb-4 space-y-2">
-    <p>
-      Estas notas funcionan únicamente con el <strong>MOD DE COPILOTO de Echedei Benítez</strong>, al cual puedes acceder a través de su 
-      <a href="https://discord.com/channels/808100241794400317/1387100333603557529" target="_blank" rel="noopener noreferrer" class="text-yellow-400 underline hover:text-yellow-300">
-        Discord oficial
-      </a>.
-    </p>
-    <p>
-      Si te saturan las notas FULL, y las BÁSICAS te resultan demasiado justas, puedes probar mis notas.
-    </p>
-  </div>
-            
-            <div id="lista-notas">
-                <p class="text-gray-400 p-4 text-center">Cargando notas...</p>
-            </div>
-        </div>
-
-        <!-- SECCIÓN: SALA DE TROFEOS -->
-        <div id="vista-trofeos" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
-            <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
-                <span>🏆</span> Sala de Trofeos / Salón de la Fama
-            </h2>
-            <div id="contenedor-trofeos" class="grid grid-cols-1 md:grid-cols-2 gap-8 p-2">
-                <p class="text-gray-400 text-center col-span-full">Cargando la Sala de Trofeos...</p>
-            </div>
-        </div>
-
-        <!-- SECCIÓN: NOTICIAS / COMUNICADOS -->
-        <div id="vista-noticias" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
-            <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
-                <span>📢</span> Comunicados y Noticias Oficiales
-            </h2>
-            <div id="contenedor-noticias" class="space-y-4">
-                <p class="text-gray-400 p-4 text-center">Cargando noticias...</p>
-            </div>
-        </div>
-
-        <!-- SECCIÓN: INFORMACIÓN DEL CAMPEONATO -->
-        <div id="vista-info" class="bg-gray-800 rounded-xl p-6 md:p-8 shadow-2xl border border-gray-700 hidden text-gray-300 space-y-8">
-            <div>
-                <h2 class="text-xl font-bold text-yellow-400 border-b border-gray-700 pb-2 mb-4 flex items-center gap-2">
-                    <span>🌐</span> ESP - INFORMACIÓN DEL CAMPEONATO
-                </h2>
-                <ul class="space-y-2 text-sm md:text-base">
-                    <li>• <strong class="text-white">Participación:</strong> Libre y gratuita para todos los pilotos.</li>
-                    <li>• <strong class="text-white">Categorías:</strong> 3 divisiones a libre elección (<strong class="text-yellow-400">4WD, FWD, RWD</strong>).</li>
-                    <li>• <strong class="text-white">Calendario:</strong> 12 Rallies en total (<strong class="text-white">pruebas semanales de 7 días</strong>).</li>
-                    <li>• <strong class="text-white">Clasificaciones:</strong>
-                        <ul class="pl-6 mt-1 space-y-1 text-sm text-gray-400">
-                            <li>- Clasificación <strong>GENERAL</strong> (absoluta).</li>
-                            <li>- Clasificación <strong>GENERAL por Categorías</strong> (4WD, FWD y RWD).</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <div class="mt-4 bg-gray-900/60 p-4 rounded-lg border border-gray-700/80">
-                    <h3 class="font-bold text-white mb-2 text-sm md:text-base">Sistema de participación y puntuación por categorías:</h3>
-                    <p class="text-sm text-gray-300 leading-relaxed">
-                        Los pilotos tienen total libertad para <strong>cambiar de categoría en cada prueba</strong>. La puntuación acumulada se reflejará tanto en la tabla General absoluta como en la tabla General de la división correspondiente a la categoría elegida en cada rally.
-                    </p>
-                    <div class="mt-3 bg-gray-800/80 p-3 rounded border-l-4 border-yellow-500 text-xs md:text-sm italic text-gray-300">
-                        <strong>Ejemplo práctico:</strong> Si el <em>Piloto 1</em> compite en un rally con un vehículo <strong>4WD</strong> y en la siguiente prueba con un <strong>RWD</strong>, sus puntos sumarán tanto para la <strong>GENERAL del campeonato</strong> (a lo largo de los 12 Rallies) como para las clasificaciones específicas de <strong>4WD</strong> y <strong>RWD</strong> en las pruebas disputadas con cada uno.
-                    </div>
-                </div>
-
-                <p class="mt-4 text-xs md:text-sm text-yellow-400/90 italic">
-                    📌 <strong>Acceso a las pruebas:</strong> Utiliza el botón amarillo <em>"ROADBOOK"</em> que aparece bajo la placa para entrar directamente a la prueba activa.
-                </p>
-            </div>
-
-            <hr class="border-gray-700/60">
-
-            <div>
-                <h2 class="text-xl font-bold text-yellow-400 border-b border-gray-700 pb-2 mb-4 flex items-center gap-2">
-                    <span>🌐</span> ENG - CHAMPIONSHIP INFORMATION
-                </h2>
-                <ul class="space-y-2 text-sm md:text-base">
-                    <li>• <strong class="text-white">Participation:</strong> Free and open to all drivers.</li>
-                    <li>• <strong class="text-white">Categories:</strong> 3 divisions available to choose from (<strong class="text-yellow-400">4WD, FWD, RWD</strong>).</li>
-                    <li>• <strong class="text-white">Calendar:</strong> 12 Rallies in total (<strong class="text-white">7-day weekly events</strong>).</li>
-                    <li>• <strong class="text-white">Standings:</strong>
-                        <ul class="pl-6 mt-1 space-y-1 text-sm text-gray-400">
-                            <li>- <strong>OVERALL</strong> Championship Standings.</li>
-                            <li>- <strong>Category Standings</strong> (4WD, FWD, and RWD).</li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <div class="mt-4 bg-gray-900/60 p-4 rounded-lg border border-gray-700/80">
-                    <h3 class="font-bold text-white mb-2 text-sm md:text-base">Category Switching & Scoring System:</h3>
-                    <p class="text-sm text-gray-300 leading-relaxed">
-                        Drivers are free to <strong>change categories for each event</strong>. Points scored in each rally will count towards the Overall Championship table as well as the specific Category standings for the vehicle driven in that race.
-                    </p>
-                    <div class="mt-3 bg-gray-800/80 p-3 rounded border-l-4 border-yellow-500 text-xs md:text-sm italic text-gray-300">
-                        <strong>Example:</strong> If <em>Driver 1</em> competes in one rally using a <strong>4WD</strong> car and enters the next with a <strong>RWD</strong> car, their points will count toward the <strong>OVERALL standings</strong> (across all 12 Rallies) as well as the respective <strong>4WD</strong> and <strong>RWD</strong> category standings for the rounds completed in each class.
-                    </div>
-                </div>
-
-                <p class="mt-4 text-xs md:text-sm text-yellow-400/90 italic">
-                    📌 <strong>Event Access:</strong> Use the yellow button <em>"ROADBOOK"</em> under the rally plate to enter the active round directly.
-                </p>
-            </div>
+        <div id="select-rally-container" class="flex items-center gap-2">
+            <label for="select-rally" class="text-sm font-semibold text-gray-300">Ver Rally:</label>
+            <select id="select-rally" onchange="seleccionarRally(this.value)" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg p-2.5 focus:ring-yellow-500 focus:border-yellow-500 font-semibold">
+            </select>
         </div>
     </div>
 
-    <!-- FOOTER CON CONTADOR DE VISITAS -->
-    <footer class="mt-12 pt-6 border-t border-gray-800 text-center text-xs text-gray-500 flex flex-col items-center gap-2">
-        <!-- Comunidades Amigas (Destacadas y a lo grande) -->
+    <!-- TABLA: RESULTADOS DEL RALLY -->
+    <div id="vista-rally" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <h2 id="titulo-rally" class="text-xl font-bold text-yellow-400 flex items-center gap-2">
+                <span>🏁</span> Resultados del Rally
+            </h2>
+
+            <div class="flex flex-wrap gap-2">
+                <button id="btn-cat-todas" onclick="filtrarCategoriaRally('TODAS')" class="active-subtab border px-3 py-1 rounded-md text-xs font-bold transition-all">
+                    GENERAL
+                </button>
+                <button id="btn-cat-4wd" onclick="filtrarCategoriaRally('4WD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
+                    4WD
+                </button>
+                <button id="btn-cat-fwd" onclick="filtrarCategoriaRally('FWD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
+                    FWD
+                </button>
+                <button id="btn-cat-rwd" onclick="filtrarCategoriaRally('RWD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
+                    RWD
+                </button>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="text-gray-400 border-b border-gray-700 text-sm">
+                        <th class="py-3 px-2 text-center">Pos</th>
+                        <th class="py-3 px-4">Piloto</th>
+                        <th class="py-3 px-4">Vehículo</th>
+                        <th class="py-3 px-4 text-center">Cat.</th>
+                        <th class="py-3 px-4 text-right">Tiempo Total</th>
+                        <th class="py-3 px-4 text-center text-yellow-400">Puntos</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-rally-body" class="divide-y divide-gray-700/50">
+                    <tr>
+                        <td colspan="6" class="text-center py-8 text-gray-500">Cargando resultados...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- TABLA: CLASIFICACIÓN GENERAL DEL CAMPEONATO -->
+    <div id="vista-general" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2">
+                <span>🏆</span> Tabla General del Campeonato
+            </h2>
+
+            <div class="flex flex-wrap gap-2">
+                <button id="btn-gen-todas" onclick="filtrarCategoriaGeneral('TODAS')" class="active-subtab border px-3 py-1 rounded-md text-xs font-bold transition-all">
+                    GENERAL
+                </button>
+                <button id="btn-gen-4wd" onclick="filtrarCategoriaGeneral('4WD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
+                    GENERAL 4WD
+                </button>
+                <button id="btn-gen-fwd" onclick="filtrarCategoriaGeneral('FWD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
+                    GENERAL FWD
+                </button>
+                <button id="btn-gen-rwd" onclick="filtrarCategoriaGeneral('RWD')" class="bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all">
+                    GENERAL RWD
+                </button>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="text-gray-400 border-b border-gray-700 text-sm">
+                        <th class="py-3 px-2 text-center">Pos</th>
+                        <th class="py-3 px-4">Piloto</th>
+                        <th class="py-3 px-4 text-center">Rallies Disputados</th>
+                        <th class="py-3 px-4 text-center text-yellow-400">Puntos Totales</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-general-body" class="divide-y divide-gray-700/50">
+                    <tr>
+                        <td colspan="4" class="text-center py-8 text-gray-500">Aún no hay puntos acumulados en la general.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SECCIÓN: SETUPS -->
+    <div id="vista-setups" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
+        <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
+            <span>⚙️</span> Descarga de Setups
+        </h2>
+
+        <!-- Subtexto explicativo de Setups -->
+        <p class="text-sm text-gray-300 mt-2 mb-4">
+            Setups personales. Aptos y válidos, si no te sirven 100%, son una buena base.
+        </p>
+        
+        <div id="lista-setups">
+            <p class="text-gray-400 p-4 text-center">Cargando setups...</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN: NOTAS -->
+    <div id="vista-notas" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
+        <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
+            <span>📝</span> Descarga de Pacenotes / Notas
+        </h2>
+
+        <!-- Subtexto explicativo de Notas -->
+        <div class="text-sm text-gray-300 mt-2 mb-4 space-y-2">
+            <p>
+                Estas notas funcionan únicamente con el <strong>MOD DE COPILOTO de Echedei Benítez</strong>, al cual puedes acceder a través de su 
+                <a href="https://discord.com/channels/808100241794400317/1387100333603557529" target="_blank" rel="noopener noreferrer" class="text-yellow-400 underline hover:text-yellow-300">
+                    Discord oficial
+                </a>.
+            </p>
+            <p>
+                Si te saturan las notas FULL, y las BÁSICAS te resultan demasiado justas, puedes probar mis notas.
+            </p>
+        </div>
+        
+        <div id="lista-notas">
+            <p class="text-gray-400 p-4 text-center">Cargando notas...</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN: SALA DE TROFEOS -->
+    <div id="vista-trofeos" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
+        <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
+            <span>🏆</span> Sala de Trofeos / Salón de la Fama
+        </h2>
+        <div id="contenedor-trofeos" class="grid grid-cols-1 md:grid-cols-2 gap-8 p-2">
+            <p class="text-gray-400 text-center col-span-full">Cargando la Sala de Trofeos...</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN: NOTICIAS / COMUNICADOS -->
+    <div id="vista-noticias" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
+        <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
+            <span>📢</span> Comunicados y Noticias Oficiales
+        </h2>
+        <div id="contenedor-noticias" class="space-y-4">
+            <p class="text-gray-400 p-4 text-center">Cargando noticias...</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN: INFORMACIÓN DEL CAMPEONATO -->
+    <div id="vista-info" class="bg-gray-800 rounded-xl p-6 md:p-8 shadow-2xl border border-gray-700 hidden text-gray-300 space-y-8">
+        <div>
+            <h2 class="text-xl font-bold text-yellow-400 border-b border-gray-700 pb-2 mb-4 flex items-center gap-2">
+                <span>🌐</span> ESP - INFORMACIÓN DEL CAMPEONATO
+            </h2>
+            <ul class="space-y-2 text-sm md:text-base">
+                <li>• <strong class="text-white">Participación:</strong> Libre y gratuita para todos los pilotos.</li>
+                <li>• <strong class="text-white">Categorías:</strong> 3 divisiones a libre elección (<strong class="text-yellow-400">4WD, FWD, RWD</strong>).</li>
+                <li>• <strong class="text-white">Calendario:</strong> 12 Rallies en total (<strong class="text-white">pruebas semanales de 7 días</strong>).</li>
+                <li>• <strong class="text-white">Clasificaciones:</strong>
+                    <ul class="pl-6 mt-1 space-y-1 text-sm text-gray-400">
+                        <li>- Clasificación <strong>GENERAL</strong> (absoluta).</li>
+                        <li>- Clasificación <strong>GENERAL por Categorías</strong> (4WD, FWD y RWD).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mt-4 bg-gray-900/60 p-4 rounded-lg border border-gray-700/80">
+                <h3 class="font-bold text-white mb-2 text-sm md:text-base">Sistema de participación y puntuación por categorías:</h3>
+                <p class="text-sm text-gray-300 leading-relaxed">
+                    Los pilotos tienen total libertad para <strong>cambiar de categoría en cada prueba</strong>. La puntuación acumulada se reflejará tanto en la tabla General absoluta como en la tabla General de la división correspondiente a la categoría elegida en cada rally.
+                </p>
+                <div class="mt-3 bg-gray-800/80 p-3 rounded border-l-4 border-yellow-500 text-xs md:text-sm italic text-gray-300">
+                    <strong>Ejemplo práctico:</strong> Si el <em>Piloto 1</em> compite en un rally con un vehículo <strong>4WD</strong> y en la siguiente prueba con un <strong>RWD</strong>, sus puntos sumarán tanto para la <strong>GENERAL del campeonato</strong> (a lo largo de los 12 Rallies) como para las clasificaciones específicas de <strong>4WD</strong> y <strong>RWD</strong> en las pruebas disputadas con cada uno.
+                </div>
+            </div>
+
+            <p class="mt-4 text-xs md:text-sm text-yellow-400/90 italic">
+                📌 <strong>Acceso a las pruebas:</strong> Utiliza el botón amarillo <em>"ROADBOOK"</em> que aparece bajo la placa para entrar directamente a la prueba activa.
+            </p>
+        </div>
+
+        <hr class="border-gray-700/60">
+
+        <div>
+            <h2 class="text-xl font-bold text-yellow-400 border-b border-gray-700 pb-2 mb-4 flex items-center gap-2">
+                <span>🌐</span> ENG - CHAMPIONSHIP INFORMATION
+            </h2>
+            <ul class="space-y-2 text-sm md:text-base">
+                <li>• <strong class="text-white">Participation:</strong> Free and open to all drivers.</li>
+                <li>• <strong class="text-white">Categories:</strong> 3 divisions available to choose from (<strong class="text-yellow-400">4WD, FWD, RWD</strong>).</li>
+                <li>• <strong class="text-white">Calendar:</strong> 12 Rallies in total (<strong class="text-white">7-day weekly events</strong>).</li>
+                <li>• <strong class="text-white">Standings:</strong>
+                    <ul class="pl-6 mt-1 space-y-1 text-sm text-gray-400">
+                        <li>- <strong>OVERALL</strong> Championship Standings.</li>
+                        <li>- <strong>Category Standings</strong> (4WD, FWD, and RWD).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mt-4 bg-gray-900/60 p-4 rounded-lg border border-gray-700/80">
+                <h3 class="font-bold text-white mb-2 text-sm md:text-base">Category Switching & Scoring System:</h3>
+                <p class="text-sm text-gray-300 leading-relaxed">
+                    Drivers are free to <strong>change categories for each event</strong>. Points scored in each rally will count towards the Overall Championship table as well as the specific Category standings for the vehicle driven in that race.
+                </p>
+                <div class="mt-3 bg-gray-800/80 p-3 rounded border-l-4 border-yellow-500 text-xs md:text-sm italic text-gray-300">
+                    <strong>Example:</strong> If <em>Driver 1</em> competes in one rally using a <strong>4WD</strong> car and enters the next with a <strong>RWD</strong> car, their points will count toward the <strong>OVERALL standings</strong> (across all 12 Rallies) as well as the respective <strong>4WD</strong> and <strong>RWD</strong> category standings for the rounds completed in each class.
+                </div>
+            </div>
+
+            <p class="mt-4 text-xs md:text-sm text-yellow-400/90 italic">
+                📌 <strong>Event Access:</strong> Use the yellow button <em>"ROADBOOK"</em> under the rally plate to enter the active round directly.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER CON CONTADOR DE VISITAS -->
+<footer class="mt-12 pt-6 border-t border-gray-800 text-center text-xs text-gray-500 flex flex-col items-center gap-2">
+    <!-- Comunidades Amigas (Destacadas y a lo grande) -->
     <div class="flex items-center justify-center gap-4 py-2">
         <span class="text-sm font-bold text-gray-400 tracking-wider uppercase">Comunidades Amigas:</span>
         <a href="https://chat.whatsapp.com/KS24FyIqXrsCvrZjM8Bza0" target="_blank" rel="noopener noreferrer" class="text-2xl font-black text-yellow-400 hover:text-yellow-300 transition-colors tracking-wide">IVR</a>
         <span class="text-gray-600 text-xl font-bold">•</span>
         <a href="https://www.wrsim.com/#" target="_blank" rel="noopener noreferrer" class="text-2xl font-black text-yellow-400 hover:text-yellow-300 transition-colors tracking-wide">WRSim</a>
     </div>
+    
+    <p>© SISU RALLY COMPETICIÓN - RBR - RSF Plugin</p>
+    <div class="flex items-center gap-2 bg-gray-800/80 px-4 py-1.5 rounded-full border border-gray-700 text-gray-300 font-semibold">
+        <span>👁️ Visitas a la web:</span>
+        <span id="numero-visitas" class="text-yellow-400 font-mono">Cargando...</span>
+    </div>
+</footer>
+
+<script>
+    let configGlobal = null;
+    let mapaCochesGlobal = { "4WD": [], "FWD": [], "RWD": [] };
+    let datosRallyProcesados = [];
+    let mapaPowerStageActual = {}; 
+    let historicoRallies = [];
+    let catRallySeleccionada = 'TODAS';
+    let catGeneralSeleccionada = 'TODAS';
+    
+    let rallyParaTablaGlobal = null;
+    let numTablaGlobal = 1;
+    let activoGlobal = null;
+    let numActivoGlobal = 1;
+    
+    const puntosEscala = [50, 45, 42, 40, 38, 36, 34, 32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 1];
+    const puntosPowerStageEscala = [8, 7, 6, 5, 4, 3, 2, 1];
+
+    function cambiarPestana(vista) {
+        const btnRally = document.getElementById('btn-rally');
+        const btnGeneral = document.getElementById('btn-general');
+        const btnSetups = document.getElementById('btn-setups');
+        const btnNotas = document.getElementById('btn-notas');
+        const btnTrofeos = document.getElementById('btn-trofeos');
+        const btnNoticias = document.getElementById('btn-noticias');
+        const btnInfo = document.getElementById('btn-info');
         
-        <p>© SISU RALLY COMPETICIÓN - RBR - RSF Plugin</p>
-        <div class="flex items-center gap-2 bg-gray-800/80 px-4 py-1.5 rounded-full border border-gray-700 text-gray-300 font-semibold">
-            <span>👁️ Visitas a la web:</span>
-            <span id="numero-visitas" class="text-yellow-400 font-mono">Cargando...</span>
-        </div>
-    </footer>
-
-    <script>
-        let configGlobal = null;
-        let mapaCochesGlobal = { "4WD": [], "FWD": [], "RWD": [] };
-        let datosRallyProcesados = [];
-        let mapaPowerStageActual = {}; // { "NombrePiloto": puntosPowerStage }
-        let historicoRallies = [];
-        let catRallySeleccionada = 'TODAS';
-        let catGeneralSeleccionada = 'TODAS';
+        const vistaRally = document.getElementById('vista-rally');
+        const vistaGeneral = document.getElementById('vista-general');
+        const vistaSetups = document.getElementById('vista-setups');
+        const vistaNotas = document.getElementById('vista-notas');
+        const vistaTrofeos = document.getElementById('vista-trofeos');
+        const vistaNoticias = document.getElementById('vista-noticias');
+        const vistaInfo = document.getElementById('vista-info');
         
-        const puntosEscala = [50, 45, 42, 40, 38, 36, 34, 32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 1];
-        // Escala oficial Power Stage: 8 a 1 punto (8 primeros clasificados)
-        const puntosPowerStageEscala = [8, 7, 6, 5, 4, 3, 2, 1];
+        const contPlaca = document.getElementById('contenedor-placa');
+        const selectorCont = document.getElementById('select-rally-container');
 
-        function cambiarPestana(vista) {
-            const btnRally = document.getElementById('btn-rally');
-            const btnGeneral = document.getElementById('btn-general');
-            const btnSetups = document.getElementById('btn-setups');
-            const btnNotas = document.getElementById('btn-notas');
-            const btnTrofeos = document.getElementById('btn-trofeos');
-            const btnNoticias = document.getElementById('btn-noticias');
-            const btnInfo = document.getElementById('btn-info');
-            
-            const vistaRally = document.getElementById('vista-rally');
-            const vistaGeneral = document.getElementById('vista-general');
-            const vistaSetups = document.getElementById('vista-setups');
-            const vistaNotas = document.getElementById('vista-notas');
-            const vistaTrofeos = document.getElementById('vista-trofeos');
-            const vistaNoticias = document.getElementById('vista-noticias');
-            const vistaInfo = document.getElementById('vista-info');
-            
-            const contPlaca = document.getElementById('contenedor-placa');
-            const selectorCont = document.getElementById('select-rally-container');
+        const claseInactiva = 'bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base';
+        const claseActiva = 'active-tab px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base';
 
-            const claseInactiva = 'bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base';
-            const claseActiva = 'active-tab px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base';
+        btnRally.className = claseInactiva;
+        btnGeneral.className = claseInactiva;
+        if (btnSetups) btnSetups.className = claseInactiva;
+        if (btnNotas) btnNotas.className = claseInactiva;
+        if (btnTrofeos) btnTrofeos.className = claseInactiva;
+        btnNoticias.className = claseInactiva;
+        btnInfo.className = claseInactiva;
 
-            btnRally.className = claseInactiva;
-            btnGeneral.className = claseInactiva;
-            if (btnSetups) btnSetups.className = claseInactiva;
-            if (btnNotas) btnNotas.className = claseInactiva;
-            if (btnTrofeos) btnTrofeos.className = claseInactiva;
-            btnNoticias.className = claseInactiva;
-            btnInfo.className = claseInactiva;
+        vistaRally.classList.add('hidden');
+        vistaGeneral.classList.add('hidden');
+        if (vistaSetups) vistaSetups.classList.add('hidden');
+        if (vistaNotas) vistaNotas.classList.add('hidden');
+        if (vistaTrofeos) vistaTrofeos.classList.add('hidden');
+        vistaNoticias.classList.add('hidden');
+        vistaInfo.classList.add('hidden');
 
-            vistaRally.classList.add('hidden');
-            vistaGeneral.classList.add('hidden');
-            if (vistaSetups) vistaSetups.classList.add('hidden');
-            if (vistaNotas) vistaNotas.classList.add('hidden');
-            if (vistaTrofeos) vistaTrofeos.classList.add('hidden');
-            vistaNoticias.classList.add('hidden');
-            vistaInfo.classList.add('hidden');
+        if (vista === 'rally') {
+            btnRally.className = claseActiva;
+            vistaRally.classList.remove('hidden');
+            contPlaca.classList.remove('hidden');
+            selectorCont.classList.remove('hidden');
 
-            if (vista === 'rally') {
-                btnRally.className = claseActiva;
-                vistaRally.classList.remove('hidden');
-                contPlaca.classList.remove('hidden');
-                selectorCont.classList.remove('hidden');
-            } else if (vista === 'general') {
-                btnGeneral.className = claseActiva;
-                vistaGeneral.classList.remove('hidden');
-                contPlaca.classList.add('hidden');
-                selectorCont.classList.add('hidden');
-                calcularClasificacionGeneral();
-            } else if (vista === 'setups') {
-                if (btnSetups) btnSetups.className = claseActiva;
-                if (vistaSetups) vistaSetups.classList.remove('hidden');
-                contPlaca.classList.add('hidden');
-                selectorCont.classList.add('hidden');
-                cargarSetups();
-            } else if (vista === 'notas') {
-                if (btnNotas) btnNotas.className = claseActiva;
-                if (vistaNotas) vistaNotas.classList.remove('hidden');
-                contPlaca.classList.add('hidden');
-                selectorCont.classList.add('hidden');
-                cargarNotas();
-             } else if (vista === 'trofeos') {
-                if (btnTrofeos) btnTrofeos.className = claseActiva;
-                if (vistaTrofeos) vistaTrofeos.classList.remove('hidden');
-                contPlaca.classList.add('hidden');
-                selectorCont.classList.add('hidden');
-                cargarTrofeos();
-            } else if (vista === 'noticias') {
-                btnNoticias.className = claseActiva;
-                vistaNoticias.classList.remove('hidden');
-                contPlaca.classList.add('hidden');
-                selectorCont.classList.add('hidden');
-                cargarNoticias();
-            } else if (vista === 'info') {
-                btnInfo.className = claseActiva;
-                vistaInfo.classList.remove('hidden');
-                contPlaca.classList.add('hidden');
-                selectorCont.classList.add('hidden');
+            // CORRECCIÓN: Al pulsar el botón "Último Rally", cargamos la placa del activo pero los resultados del último disputado en la tabla y selector
+            if (activoGlobal && rallyParaTablaGlobal) {
+                const selector = document.getElementById('select-rally');
+                if (selector) selector.value = String(numTablaGlobal);
+                cargarCabeceraRally(activoGlobal, numActivoGlobal);
+                cargarRallyDesdeCSV(rallyParaTablaGlobal, numTablaGlobal);
             }
+        } else if (vista === 'general') {
+            btnGeneral.className = claseActiva;
+            vistaGeneral.classList.remove('hidden');
+            contPlaca.classList.add('hidden');
+            selectorCont.classList.add('hidden');
+            calcularClasificacionGeneral();
+        } else if (vista === 'setups') {
+            if (btnSetups) btnSetups.className = claseActiva;
+            if (vistaSetups) vistaSetups.classList.remove('hidden');
+            contPlaca.classList.add('hidden');
+            selectorCont.classList.add('hidden');
+            cargarSetups();
+        } else if (vista === 'notas') {
+            if (btnNotas) btnNotas.className = claseActiva;
+            if (vistaNotas) vistaNotas.classList.remove('hidden');
+            contPlaca.classList.add('hidden');
+            selectorCont.classList.add('hidden');
+            cargarNotas();
+         } else if (vista === 'trofeos') {
+            if (btnTrofeos) btnTrofeos.className = claseActiva;
+            if (vistaTrofeos) vistaTrofeos.classList.remove('hidden');
+            contPlaca.classList.add('hidden');
+            selectorCont.classList.add('hidden');
+            cargarTrofeos();
+        } else if (vista === 'noticias') {
+            btnNoticias.className = claseActiva;
+            vistaNoticias.classList.remove('hidden');
+            contPlaca.classList.add('hidden');
+            selectorCont.classList.add('hidden');
+            cargarNoticias();
+        } else if (vista === 'info') {
+            btnInfo.className = claseActiva;
+            vistaInfo.classList.remove('hidden');
+            contPlaca.classList.add('hidden');
+            selectorCont.classList.add('hidden');
         }
+    }
 
-function cargarTrofeos() {
-            fetch('trofeos.json?v=' + new Date().getTime())
-                .then(res => {
-                    if (!res.ok) throw new Error('Error al cargar trofeos');
-                    return res.json();
-                })
-                .then(datos => {
-                    const cont = document.getElementById('contenedor-trofeos');
-                    if (!cont) return;
+    function cargarTrofeos() {
+        fetch('trofeos.json?v=' + new Date().getTime())
+            .then(res => {
+                if (!res.ok) throw new Error('Error al cargar trofeos');
+                return res.json();
+            })
+            .then(datos => {
+                const cont = document.getElementById('contenedor-trofeos');
+                if (!cont) return;
 
-                    if (!datos || datos.length === 0) {
-                        cont.innerHTML = '<p class="text-gray-400 text-center col-span-full">Aún no se han registrado trofeos.</p>';
-                        return;
-                    }
-
-                    cont.innerHTML = datos.map(item => `
-                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 bg-gray-900/40 p-4 rounded-xl border border-gray-700/50 shadow-lg">
-                            
-                            <!-- MARCO IMAGEN Y NOMBRE CAMPEONATO + CATEGORÍA -->
-                            <div class="flex flex-col items-center w-full sm:w-[220px] shrink-0">
-                                <div class="w-full h-[270px] border-4 border-yellow-500 rounded-lg overflow-hidden bg-gray-900 flex items-center justify-center shadow-inner">
-                                    <img src="${item.imagen}" alt="Trofeo" class="w-full h-full object-contain p-2" onerror="this.onerror=null; this.src='https://via.placeholder.com/220x270/111827/eab308?text=IMAGEN+TROFEO';">
-                                </div>
-                                
-                                <div class="w-full border-2 border-yellow-500 bg-gray-900 text-emerald-400 py-1.5 px-2 mt-2 text-center rounded tracking-wider flex flex-col justify-center gap-0.5">
-                                    <span class="text-[11px] font-extrabold uppercase leading-tight">${item.campeonato}</span>
-                                    <span class="text-[10px] font-black text-yellow-400 uppercase tracking-widest">${item.categoria}</span>
-                                </div>
-                            </div>
-
-                            <!-- BLOQUE DATOS PILOTO -->
-                            <div class="flex flex-col justify-center gap-3 w-full py-2">
-                                <h3 class="text-2xl font-black text-yellow-400 tracking-wide">${item.piloto}</h3>
-                                
-                                <div class="text-lg font-bold">
-                                    <span class="text-yellow-500">PTS:</span> 
-                                    <span class="text-emerald-400 font-mono">${item.puntos}</span>
-                                </div>
-
-                                <div class="space-y-1">
-                                    <div class="text-sm font-black text-yellow-500 tracking-wider">PODIOS:</div>
-                                    <div class="flex items-center gap-3 text-base font-extrabold">
-                                        <div><span class="text-yellow-400">1º</span> <span class="text-emerald-400 font-mono text-sm">[${item.primeros}]</span></div>
-                                        <div><span class="text-gray-300">2º</span> <span class="text-emerald-400 font-mono text-sm">[${item.segundos}]</span></div>
-                                        <div><span class="text-amber-600">3º</span> <span class="text-emerald-400 font-mono text-sm">[${item.terceros}]</span></div>
-                                    </div>
-                                </div>
-
-                                <div class="text-sm font-bold mt-1">
-                                    <span class="text-yellow-500 font-black tracking-wider">SCRATCHES:</span> 
-                                    <span class="text-emerald-400 font-mono text-base">${item.scratches}</span>
-                                </div>
-                            </div>
-
-                        </div>
-                    `).join('');
-                })
-                .catch(() => {
-                    const cont = document.getElementById('contenedor-trofeos');
-                    if (cont) {
-                        cont.innerHTML = '<p class="text-gray-400 text-center col-span-full">No se pudo cargar el archivo trofeos.json o aún no se ha creado.</p>';
-                    }
-                });
-        }
-        
-        function cargarSetups() {
-            fetch('SETUPS.json?v=' + new Date().getTime())
-                .then(response => {
-                    if (!response.ok) throw new Error('Error HTTP ' + response.status);
-                    return response.json();
-                })
-                .then(data => {
-                    const contenedorSetups = document.getElementById('lista-setups');
-                    if (!contenedorSetups) return;
-
-                    if (!data || data.length === 0) {
-                        contenedorSetups.innerHTML = '<p class="text-gray-500 italic text-center p-4">No hay setups disponibles.</p>';
-                        return;
-                    }
-
-                    let html = '<ul class="space-y-3">';
-                    data.forEach(item => {
-                        html += `
-                            <li class="flex justify-between items-center bg-gray-900/80 p-4 rounded-xl border border-gray-700 shadow-md">
-                                <div>
-                                    <strong class="text-yellow-400 text-base md:text-lg block">${item.coche}</strong> 
-                                    <span class="text-gray-400 text-sm">Especialidad / Tipo: ${item.tipo}</span>
-                                </div>
-                                <a href="${encodeURI(item.archivo)}" download class="bg-yellow-500 hover:bg-yellow-400 text-black font-extrabold px-4 py-2 rounded-lg text-xs md:text-sm uppercase tracking-wider transition-all shadow">
-                                    Descargar Setup
-                                </a>
-                            </li>
-                        `;
-                    });
-                    html += '</ul>';
-                    contenedorSetups.innerHTML = html;
-                })
-                .catch(error => {
-                    console.error("Error cargando SETUPS:", error);
-                    const contenedorSetups = document.getElementById('lista-setups');
-                    if (contenedorSetups) {
-                        contenedorSetups.innerHTML = '<p class="text-gray-400 italic text-center p-4">No se pudo cargar SETUPS.json o aún no hay setups disponibles.</p>';
-                    }
-                });
-        }
-
-        function cargarNotas() {
-            fetch('NOTAS.json?v=' + new Date().getTime())
-                .then(response => {
-                    if (!response.ok) throw new Error('Error HTTP ' + response.status);
-                    return response.json();
-                })
-                .then(data => {
-                    const contenedorNotas = document.getElementById('lista-notas');
-                    if (!contenedorNotas) return;
-
-                    if (!data || data.length === 0) {
-                        contenedorNotas.innerHTML = '<p class="text-gray-500 italic text-center p-4">No hay notas disponibles.</p>';
-                        return;
-                    }
-
-                    let html = '<ul class="space-y-3">';
-                    data.forEach(item => {
-                        html += `
-                            <li class="flex justify-between items-center bg-gray-900/80 p-4 rounded-xl border border-gray-700 shadow-md">
-                                <div>
-                                    <strong class="text-yellow-400 text-base md:text-lg block">Tramo: ${item.tramo}</strong>
-                                </div>
-                                <a href="${encodeURI(item.archivo)}" download class="bg-yellow-500 hover:bg-yellow-400 text-black font-extrabold px-4 py-2 rounded-lg text-xs md:text-sm uppercase tracking-wider transition-all shadow">
-                                    Descargar Nota
-                                </a>
-                            </li>
-                        `;
-                    });
-                    html += '</ul>';
-                    contenedorNotas.innerHTML = html;
-                })
-                .catch(error => {
-                    console.error("Error cargando NOTAS:", error);
-                    const contenedorNotas = document.getElementById('lista-notas');
-                    if (contenedorNotas) {
-                        contenedorNotas.innerHTML = '<p class="text-gray-400 italic text-center p-4">No se pudo cargar NOTAS.json o aún no hay notas disponibles.</p>';
-                    }
-                });
-        }
-
-        async function cargarNoticias() {
-            const contenedor = document.getElementById('contenedor-noticias');
-            try {
-                const res = await fetch('noticias.json?v=' + new Date().getTime());
-                if (!res.ok) throw new Error('No noticias');
-                const noticias = await res.json();
-                
-                if (noticias.length === 0) {
-                    contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay comunicados publicados.</p>';
+                if (!datos || datos.length === 0) {
+                    cont.innerHTML = '<p class="text-gray-400 text-center col-span-full">Aún no se han registrado trofeos.</p>';
                     return;
                 }
 
-                const noticiasOrdenadas = [...noticias].reverse();
-
-                contenedor.innerHTML = noticiasOrdenadas.map(n => `
-                    <div class="bg-gray-900/80 border-l-4 ${n.color === 'yellow' ? 'border-yellow-500' : 'border-blue-500'} p-5 rounded-r-xl shadow-lg">
-                        <div class="flex flex-wrap justify-between items-center mb-2 gap-2">
-                            <span class="text-xs font-bold px-2.5 py-0.5 rounded ${n.color === 'yellow' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'} uppercase">
-                                ${n.categoria || 'ANUNCIO'}
-                            </span>
-                            <span class="text-xs text-gray-400 font-mono">📅 ${n.fecha}</span>
+                cont.innerHTML = datos.map(item => `
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 bg-gray-900/40 p-4 rounded-xl border border-gray-700/50 shadow-lg">
+                        
+                        <!-- MARCO IMAGEN Y NOMBRE CAMPEONATO + CATEGORÍA -->
+                        <div class="flex flex-col items-center w-full sm:w-[220px] shrink-0">
+                            <div class="w-full h-[270px] border-4 border-yellow-500 rounded-lg overflow-hidden bg-gray-900 flex items-center justify-center shadow-inner">
+                                <img src="${item.imagen}" alt="Trofeo" class="w-full h-full object-contain p-2" onerror="this.onerror=null; this.src='https://via.placeholder.com/220x270/111827/eab308?text=IMAGEN+TROFEO';">
+                            </div>
+                            
+                            <div class="w-full border-2 border-yellow-500 bg-gray-900 text-emerald-400 py-1.5 px-2 mt-2 text-center rounded tracking-wider flex flex-col justify-center gap-0.5">
+                                <span class="text-[11px] font-extrabold uppercase leading-tight">${item.campeonato}</span>
+                                <span class="text-[10px] font-black text-yellow-400 uppercase tracking-widest">${item.categoria}</span>
+                            </div>
                         </div>
-                        <h3 class="text-lg md:text-xl font-bold text-white mb-2">${n.titulo}</h3>
-                        <p class="text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-line">${n.contenido}</p>
+
+                        <!-- BLOQUE DATOS PILOTO -->
+                        <div class="flex flex-col justify-center gap-3 w-full py-2">
+                            <h3 class="text-2xl font-black text-yellow-400 tracking-wide">${item.piloto}</h3>
+                            
+                            <div class="text-lg font-bold">
+                                <span class="text-yellow-500">PTS:</span> 
+                                <span class="text-emerald-400 font-mono">${item.puntos}</span>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="text-sm font-black text-yellow-500 tracking-wider">PODIOS:</div>
+                                <div class="flex items-center gap-3 text-base font-extrabold">
+                                    <div><span class="text-yellow-400">1º</span> <span class="text-emerald-400 font-mono text-sm">[${item.primeros}]</span></div>
+                                    <div><span class="text-gray-300">2º</span> <span class="text-emerald-400 font-mono text-sm">[${item.segundos}]</span></div>
+                                    <div><span class="text-amber-600">3º</span> <span class="text-emerald-400 font-mono text-sm">[${item.terceros}]</span></div>
+                                </div>
+                            </div>
+
+                            <div class="text-sm font-bold mt-1">
+                                <span class="text-yellow-500 font-black tracking-wider">SCRATCHES:</span> 
+                                <span class="text-emerald-400 font-mono text-base">${item.scratches}</span>
+                            </div>
+                        </div>
+
                     </div>
                 `).join('');
+            })
+            .catch(() => {
+                const cont = document.getElementById('contenedor-trofeos');
+                if (cont) {
+                    cont.innerHTML = '<p class="text-gray-400 text-center col-span-full">No se pudo cargar el archivo trofeos.json o aún no se ha creado.</p>';
+                }
+            });
+    }
+    
+    function cargarSetups() {
+        fetch('SETUPS.json?v=' + new Date().getTime())
+            .then(response => {
+                if (!response.ok) throw new Error('Error HTTP ' + response.status);
+                return response.json();
+            })
+            .then(data => {
+                const contenedorSetups = document.getElementById('lista-setups');
+                if (!contenedorSetups) return;
 
-            } catch (e) {
-                contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay avisos publicados en este momento.</p>';
+                if (!data || data.length === 0) {
+                    contenedorSetups.innerHTML = '<p class="text-gray-500 italic text-center p-4">No hay setups disponibles.</p>';
+                    return;
+                }
+
+                let html = '<ul class="space-y-3">';
+                data.forEach(item => {
+                    html += `
+                        <li class="flex justify-between items-center bg-gray-900/80 p-4 rounded-xl border border-gray-700 shadow-md">
+                            <div>
+                                <strong class="text-yellow-400 text-base md:text-lg block">${item.coche}</strong> 
+                                <span class="text-gray-400 text-sm">Especialidad / Tipo: ${item.tipo}</span>
+                            </div>
+                            <a href="${encodeURI(item.archivo)}" download class="bg-yellow-500 hover:bg-yellow-400 text-black font-extrabold px-4 py-2 rounded-lg text-xs md:text-sm uppercase tracking-wider transition-all shadow">
+                                Descargar Setup
+                            </a>
+                        </li>
+                    `;
+                });
+                html += '</ul>';
+                contenedorSetups.innerHTML = html;
+            })
+            .catch(error => {
+                console.error("Error cargando SETUPS:", error);
+                const contenedorSetups = document.getElementById('lista-setups');
+                if (contenedorSetups) {
+                    contenedorSetups.innerHTML = '<p class="text-gray-400 italic text-center p-4">No se pudo cargar SETUPS.json o aún no hay setups disponibles.</p>';
+                }
+            });
+    }
+
+    function cargarNotas() {
+        fetch('NOTAS.json?v=' + new Date().getTime())
+            .then(response => {
+                if (!response.ok) throw new Error('Error HTTP ' + response.status);
+                return response.json();
+            })
+            .then(data => {
+                const contenedorNotas = document.getElementById('lista-notas');
+                if (!contenedorNotas) return;
+
+                if (!data || data.length === 0) {
+                    contenedorNotas.innerHTML = '<p class="text-gray-500 italic text-center p-4">No hay notas disponibles.</p>';
+                    return;
+                }
+
+                let html = '<ul class="space-y-3">';
+                data.forEach(item => {
+                    html += `
+                        <li class="flex justify-between items-center bg-gray-900/80 p-4 rounded-xl border border-gray-700 shadow-md">
+                            <div>
+                                <strong class="text-yellow-400 text-base md:text-lg block">Tramo: ${item.tramo}</strong>
+                            </div>
+                            <a href="${encodeURI(item.archivo)}" download class="bg-yellow-500 hover:bg-yellow-400 text-black font-extrabold px-4 py-2 rounded-lg text-xs md:text-sm uppercase tracking-wider transition-all shadow">
+                                Descargar Nota
+                            </a>
+                        </li>
+                    `;
+                });
+                html += '</ul>';
+                contenedorNotas.innerHTML = html;
+            })
+            .catch(error => {
+                console.error("Error cargando NOTAS:", error);
+                const contenedorNotas = document.getElementById('lista-notas');
+                if (contenedorNotas) {
+                    contenedorNotas.innerHTML = '<p class="text-gray-400 italic text-center p-4">No se pudo cargar NOTAS.json o aún no hay notas disponibles.</p>';
+                }
+            });
+    }
+
+    async function cargarNoticias() {
+        const contenedor = document.getElementById('contenedor-noticias');
+        try {
+            const res = await fetch('noticias.json?v=' + new Date().getTime());
+            if (!res.ok) throw new Error('No noticias');
+            const noticias = await res.json();
+            
+            if (noticias.length === 0) {
+                contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay comunicados publicados.</p>';
+                return;
             }
+
+            const noticiasOrdenadas = [...noticias].reverse();
+
+            contenedor.innerHTML = noticiasOrdenadas.map(n => `
+                <div class="bg-gray-900/80 border-l-4 ${n.color === 'yellow' ? 'border-yellow-500' : 'border-blue-500'} p-5 rounded-r-xl shadow-lg">
+                    <div class="flex flex-wrap justify-between items-center mb-2 gap-2">
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded ${n.color === 'yellow' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'} uppercase">
+                            ${n.categoria || 'ANUNCIO'}
+                        </span>
+                        <span class="text-xs text-gray-400 font-mono">📅 ${n.fecha}</span>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-white mb-2">${n.titulo}</h3>
+                    <p class="text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-line">${n.contenido}</p>
+                </div>
+            `).join('');
+
+        } catch (e) {
+            contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay avisos publicados en este momento.</p>';
+        }
+    }
+
+    Promise.all([
+        fetch('config.json').then(res => res.json()).catch(() => ({ rallys: [] })),
+        fetch('coches.json').then(res => res.json()).catch(() => ({ "4WD": [], "FWD": [], "RWD": [] }))
+    ]).then(([cfg, coches]) => {
+        configGlobal = cfg;
+        mapaCochesGlobal = coches;
+
+        const selector = document.getElementById('select-rally');
+        selector.innerHTML = '';
+        
+        if (cfg.rallys && cfg.rallys.length > 0) {
+            cfg.rallys.forEach((r, idx) => {
+                const option = document.createElement('option');
+                const valNum = String(r.num !== undefined ? r.num : (idx + 1));
+                option.value = valNum;
+                option.textContent = r.nombre + (r.activo ? ' (En curso)' : '');
+                selector.appendChild(option);
+            });
+
+            activoGlobal = cfg.rallys.find(r => r.activo) || cfg.rallys[0];
+            numActivoGlobal = activoGlobal.num !== undefined ? activoGlobal.num : (cfg.rallys.indexOf(activoGlobal) + 1);
+
+            let indiceActivo = cfg.rallys.findIndex(r => r.activo);
+            rallyParaTablaGlobal = activoGlobal;
+            numTablaGlobal = numActivoGlobal;
+
+            if (indiceActivo > 0) {
+                rallyParaTablaGlobal = cfg.rallys[indiceActivo - 1];
+                numTablaGlobal = rallyParaTablaGlobal.num !== undefined ? rallyParaTablaGlobal.num : indiceActivo;
+            }
+
+            selector.value = String(numTablaGlobal);
+            cargarCabeceraRally(activoGlobal, numActivoGlobal);
+            cargarRallyDesdeCSV(rallyParaTablaGlobal, numTablaGlobal);
+            cargarTodosLosRalliesParaGeneral();
+        } else {
+            cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
+        }
+    });
+
+    function seleccionarRally(valNum) {
+        const numInt = parseInt(valNum, 10);
+        if (!configGlobal || !configGlobal.rallys) {
+            cargarRallyDesdeCSV({ nombre: `Rally ${numInt}` }, numInt);
+            return;
         }
 
-        Promise.all([
-            fetch('config.json').then(res => res.json()).catch(() => ({ rallys: [] })),
-            fetch('coches.json').then(res => res.json()).catch(() => ({ "4WD": [], "FWD": [], "RWD": [] }))
-        ]).then(([cfg, coches]) => {
-            configGlobal = cfg;
-            mapaCochesGlobal = coches;
+        let rallyEncontrado = configGlobal.rallys.find(r => String(r.num) === String(valNum));
+        if (!rallyEncontrado && configGlobal.rallys[numInt - 1]) {
+            rallyEncontrado = configGlobal.rallys[numInt - 1];
+        }
 
-            const selector = document.getElementById('select-rally');
-            selector.innerHTML = '';
-            
-            if (cfg.rallys && cfg.rallys.length > 0) {
-                cfg.rallys.forEach((r, idx) => {
-                    const option = document.createElement('option');
-                    const valNum = String(r.num !== undefined ? r.num : (idx + 1));
-                    option.value = valNum;
-                    option.textContent = r.nombre + (r.activo ? ' (En curso)' : '');
-                    if (r.activo) option.selected = true;
-                    selector.appendChild(option);
-                });
+        if (rallyEncontrado) {
+            cargarRallyDesdeCSV(rallyEncontrado, numInt);
+        } else {
+            cargarRallyDesdeCSV({ nombre: `Rally ${numInt}` }, numInt);
+        }
+    }
 
-                const activo = cfg.rallys.find(r => r.activo) || cfg.rallys[0];
-                const numActivo = activo.num !== undefined ? activo.num : (cfg.rallys.indexOf(activo) + 1);
-                cargarRallyDesdeCSV(activo, numActivo);
-                cargarTodosLosRalliesParaGeneral();
+    async function cargarCabeceraRally(rallyInfo, numOrden) {
+        const imgPlaca = document.getElementById('imagen-placa');
+        const contPlaca = document.getElementById('contenedor-placa');
+        const btnLink = document.getElementById('btn-link-rally');
+
+        if (rallyInfo && rallyInfo.placa && rallyInfo.placa.trim() !== '') {
+            imgPlaca.src = rallyInfo.placa;
+            contPlaca.classList.remove('hidden');
+        } else {
+            imgPlaca.src = '';
+            contPlaca.classList.add('hidden');
+        }
+
+        if (rallyInfo && rallyInfo.link && rallyInfo.link.trim() !== '') {
+            btnLink.href = rallyInfo.link;
+            btnLink.classList.remove('hidden');
+        } else {
+            btnLink.href = '#';
+            btnLink.classList.add('hidden');
+        }
+    }
+
+    async function cargarRallyDesdeCSV(rallyInfo, numOrden) {
+        cargarCabeceraRally(rallyInfo, numOrden);
+
+        document.getElementById('titulo-rally').innerHTML = `<span>🏁</span> ${rallyInfo.nombre || ('Rally ' + numOrden)}`;
+
+        const tbodyRally = document.getElementById('tabla-rally-body');
+        tbodyRally.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-gray-400">Cargando CSV de tiempos...</td></tr>';
+
+        mapaPowerStageActual = {};
+
+        try {
+            const resPs = await fetch(`powerstage_${numOrden}.csv`);
+            if (resPs.ok) {
+                const textoPs = await resPs.text();
+                mapaPowerStageActual = procesarTextoPowerStageCSV(textoPs);
+            }
+        } catch (e) {
+            mapaPowerStageActual = {};
+        }
+
+        try {
+            const resCsv = await fetch(`rally_${numOrden}.csv`);
+            if (!resCsv.ok) throw new Error("Archivo CSV no encontrado");
+
+            const textoCsv = await resCsv.text();
+            datosRallyProcesados = procesarTextoCSV(textoCsv);
+
+            filtrarCategoriaRally(catRallySeleccionada);
+
+        } catch (err) {
+            datosRallyProcesados = [];
+            tbodyRally.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-gray-400">Este rally aún no se ha disputado o falta subir el archivo rally_' + numOrden + '.csv</td></tr>';
+        }
+    }
+
+    function procesarTextoCSV(textoCsv) {
+        const lineas = textoCsv.split('\n').filter(l => l.trim() !== '');
+        const lista = [];
+
+        for (let i = 1; i < lineas.length; i++) {
+            const cols = lineas[i].split(';').map(c => c.replace(/"/g, '').trim());
+            if (cols.length < 7) continue;
+
+            const piloto = cols[2] || cols[3];
+            const coche = cols[5];
+            const tiempo = cols[6];
+
+            if (!piloto || !tiempo || tiempo === '00:00.000') continue;
+
+            let cat = '4WD';
+            if (mapaCochesGlobal.FWD && mapaCochesGlobal.FWD.includes(coche)) cat = 'FWD';
+            else if (mapaCochesGlobal.RWD && mapaCochesGlobal.RWD.includes(coche)) cat = 'RWD';
+            else if (mapaCochesGlobal['4WD'] && mapaCochesGlobal['4WD'].includes(coche)) cat = '4WD';
+
+            lista.push({ piloto, coche, tiempo, categoria: cat });
+        }
+        return lista;
+    }
+
+    function procesarTextoPowerStageCSV(textoCsv) {
+        const lineas = textoCsv.split('\n').filter(l => l.trim() !== '');
+        const mapaPs = {};
+
+        let contadorPos = 0;
+        for (let i = 1; i < lineas.length; i++) {
+            const cols = lineas[i].split(';').map(c => c.replace(/"/g, '').trim());
+            if (cols.length < 7) continue;
+
+            const piloto = cols[2] || cols[3];
+            const tiempo = cols[6];
+
+            if (!piloto || !tiempo || tiempo === '00:00.000') continue;
+
+            if (contadorPos < puntosPowerStageEscala.length) {
+                mapaPs[piloto] = puntosPowerStageEscala[contadorPos];
+                contadorPos++;
             } else {
-                cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
+                break;
+            }
+        }
+        return mapaPs;
+    }
+
+    function filtrarCategoriaRally(cat) {
+        catRallySeleccionada = cat;
+
+        const btns = { 'TODAS': 'btn-cat-todas', '4WD': 'btn-cat-4wd', 'FWD': 'btn-cat-fwd', 'RWD': 'btn-cat-rwd' };
+        Object.keys(btns).forEach(key => {
+            const el = document.getElementById(btns[key]);
+            if (el) {
+                el.className = (key === cat) 
+                    ? 'active-subtab border px-3 py-1 rounded-md text-xs font-bold transition-all'
+                    : 'bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all';
             }
         });
 
-        function seleccionarRally(valNum) {
-            const numInt = parseInt(valNum, 10);
-            if (!configGlobal || !configGlobal.rallys) {
-                cargarRallyDesdeCSV({ nombre: `Rally ${numInt}` }, numInt);
-                return;
-            }
-
-            let rallyEncontrado = configGlobal.rallys.find(r => String(r.num) === String(valNum));
-            if (!rallyEncontrado && configGlobal.rallys[numInt - 1]) {
-                rallyEncontrado = configGlobal.rallys[numInt - 1];
-            }
-
-            if (rallyEncontrado) {
-                cargarRallyDesdeCSV(rallyEncontrado, numInt);
-            } else {
-                cargarRallyDesdeCSV({ nombre: `Rally ${numInt}` }, numInt);
-            }
+        let listaFiltrada = datosRallyProcesados;
+        if (cat !== 'TODAS') {
+            listaFiltrada = datosRallyProcesados.filter(p => p.categoria === cat);
         }
 
-        async function cargarRallyDesdeCSV(rallyInfo, numOrden) {
-            const imgPlaca = document.getElementById('imagen-placa');
-            const contPlaca = document.getElementById('contenedor-placa');
-            const btnLink = document.getElementById('btn-link-rally');
+        const tbodyRally = document.getElementById('tabla-rally-body');
+        tbodyRally.innerHTML = '';
 
-            if (rallyInfo && rallyInfo.placa && rallyInfo.placa.trim() !== '') {
-                imgPlaca.src = rallyInfo.placa;
-                contPlaca.classList.remove('hidden');
-            } else {
-                imgPlaca.src = '';
-                contPlaca.classList.add('hidden');
-            }
+        if (listaFiltrada.length === 0) {
+            tbodyRally.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-gray-400">No hay pilotos registrados en esta categoría.</td></tr>';
+            return;
+        }
 
-            if (rallyInfo && rallyInfo.link && rallyInfo.link.trim() !== '') {
-                btnLink.href = rallyInfo.link;
-                btnLink.classList.remove('hidden');
-            } else {
-                btnLink.href = '#';
-                btnLink.classList.add('hidden');
-            }
+        listaFiltrada.forEach((p, index) => {
+            const pos = index + 1;
+            const ptsBase = index < puntosEscala.length ? puntosEscala[index] : 1;
+            const ptsPs = mapaPowerStageActual[p.piloto] || 0;
+            const ptsTotalesRally = ptsBase + ptsPs;
 
-            document.getElementById('titulo-rally').innerHTML = `<span>🏁</span> ${rallyInfo.nombre || ('Rally ' + numOrden)}`;
+            const tagPs = ptsPs > 0 ? `<span class="text-emerald-400 text-xs font-extrabold ml-1.5">(+${ptsPs})</span>` : '';
 
-            const tbodyRally = document.getElementById('tabla-rally-body');
-            tbodyRally.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-gray-400">Cargando CSV de tiempos...</td></tr>';
+            const row = `
+                <tr class="hover:bg-gray-750 transition-colors border-b border-gray-700/30">
+                    <td class="py-3 px-2 text-center font-bold ${pos <= 3 ? 'text-yellow-400' : 'text-gray-300'}">${pos}º</td>
+                    <td class="py-3 px-4 font-semibold text-white">${p.piloto}</td>
+                    <td class="py-3 px-4 text-sm text-gray-400">${p.coche}</td>
+                    <td class="py-3 px-4 text-center text-xs"><span class="bg-gray-700 text-gray-300 px-2 py-0.5 rounded">${p.categoria}</span></td>
+                    <td class="py-3 px-4 text-right font-mono text-gray-300">${p.tiempo}</td>
+                    <td class="py-3 px-4 text-center font-bold text-yellow-400">${ptsTotalesRally} ${tagPs}</td>
+                </tr>
+            `;
+            tbodyRally.innerHTML += row;
+        });
+    }
 
-            mapaPowerStageActual = {};
+    async function cargarTodosLosRalliesParaGeneral() {
+        historicoRallies = [];
+        if (!configGlobal || !configGlobal.rallys) return;
 
+        for (let idx = 0; idx < configGlobal.rallys.length; idx++) {
+            const numR = idx + 1;
             try {
-                const resPs = await fetch(`powerstage_${numOrden}.csv`);
-                if (resPs.ok) {
-                    const textoPs = await resPs.text();
-                    mapaPowerStageActual = procesarTextoPowerStageCSV(textoPs);
-                }
-            } catch (e) {
-                mapaPowerStageActual = {};
-            }
-
-            try {
-                const resCsv = await fetch(`rally_${numOrden}.csv`);
-                if (!resCsv.ok) throw new Error("Archivo CSV no encontrado");
-
-                const textoCsv = await resCsv.text();
-                datosRallyProcesados = procesarTextoCSV(textoCsv);
-
-                filtrarCategoriaRally(catRallySeleccionada);
-
-            } catch (err) {
-                datosRallyProcesados = [];
-                tbodyRally.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-gray-400">Este rally aún no se ha disputado o falta subir el archivo rally_' + numOrden + '.csv</td></tr>';
-            }
-        }
-
-        function procesarTextoCSV(textoCsv) {
-            const lineas = textoCsv.split('\n').filter(l => l.trim() !== '');
-            const lista = [];
-
-            for (let i = 1; i < lineas.length; i++) {
-                const cols = lineas[i].split(';').map(c => c.replace(/"/g, '').trim());
-                if (cols.length < 7) continue;
-
-                const piloto = cols[2] || cols[3];
-                const coche = cols[5];
-                const tiempo = cols[6];
-
-                if (!piloto || !tiempo || tiempo === '00:00.000') continue;
-
-                let cat = '4WD';
-                if (mapaCochesGlobal.FWD && mapaCochesGlobal.FWD.includes(coche)) cat = 'FWD';
-                else if (mapaCochesGlobal.RWD && mapaCochesGlobal.RWD.includes(coche)) cat = 'RWD';
-                else if (mapaCochesGlobal['4WD'] && mapaCochesGlobal['4WD'].includes(coche)) cat = '4WD';
-
-                lista.push({ piloto, coche, tiempo, categoria: cat });
-            }
-            return lista;
-        }
-
-        function procesarTextoPowerStageCSV(textoCsv) {
-            const lineas = textoCsv.split('\n').filter(l => l.trim() !== '');
-            const mapaPs = {};
-
-            let contadorPos = 0;
-            for (let i = 1; i < lineas.length; i++) {
-                const cols = lineas[i].split(';').map(c => c.replace(/"/g, '').trim());
-                if (cols.length < 7) continue;
-
-                const piloto = cols[2] || cols[3];
-                const tiempo = cols[6];
-
-                if (!piloto || !tiempo || tiempo === '00:00.000') continue;
-
-                if (contadorPos < puntosPowerStageEscala.length) {
-                    mapaPs[piloto] = puntosPowerStageEscala[contadorPos];
-                    contadorPos++;
-                } else {
-                    break;
-                }
-            }
-            return mapaPs;
-        }
-
-        function filtrarCategoriaRally(cat) {
-            catRallySeleccionada = cat;
-
-            const btns = { 'TODAS': 'btn-cat-todas', '4WD': 'btn-cat-4wd', 'FWD': 'btn-cat-fwd', 'RWD': 'btn-cat-rwd' };
-            Object.keys(btns).forEach(key => {
-                const el = document.getElementById(btns[key]);
-                if (el) {
-                    el.className = (key === cat) 
-                        ? 'active-subtab border px-3 py-1 rounded-md text-xs font-bold transition-all'
-                        : 'bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all';
-                }
-            });
-
-            let listaFiltrada = datosRallyProcesados;
-            if (cat !== 'TODAS') {
-                listaFiltrada = datosRallyProcesados.filter(p => p.categoria === cat);
-            }
-
-            const tbodyRally = document.getElementById('tabla-rally-body');
-            tbodyRally.innerHTML = '';
-
-            if (listaFiltrada.length === 0) {
-                tbodyRally.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-gray-400">No hay pilotos registrados en esta categoría.</td></tr>';
-                return;
-            }
-
-            listaFiltrada.forEach((p, index) => {
-                const pos = index + 1;
-                const ptsBase = index < puntosEscala.length ? puntosEscala[index] : 1;
-                const ptsPs = mapaPowerStageActual[p.piloto] || 0;
-                const ptsTotalesRally = ptsBase + ptsPs;
-
-                const tagPs = ptsPs > 0 ? `<span class="text-emerald-400 text-xs font-extrabold ml-1.5">(+${ptsPs})</span>` : '';
-
-                const row = `
-                    <tr class="hover:bg-gray-750 transition-colors border-b border-gray-700/30">
-                        <td class="py-3 px-2 text-center font-bold ${pos <= 3 ? 'text-yellow-400' : 'text-gray-300'}">${pos}º</td>
-                        <td class="py-3 px-4 font-semibold text-white">${p.piloto}</td>
-                        <td class="py-3 px-4 text-sm text-gray-400">${p.coche}</td>
-                        <td class="py-3 px-4 text-center text-xs"><span class="bg-gray-700 text-gray-300 px-2 py-0.5 rounded">${p.categoria}</span></td>
-                        <td class="py-3 px-4 text-right font-mono text-gray-300">${p.tiempo}</td>
-                        <td class="py-3 px-4 text-center font-bold text-yellow-400">${ptsTotalesRally} ${tagPs}</td>
-                    </tr>
-                `;
-                tbodyRally.innerHTML += row;
-            });
-        }
-
-        async function cargarTodosLosRalliesParaGeneral() {
-            historicoRallies = [];
-            if (!configGlobal || !configGlobal.rallys) return;
-
-            for (let idx = 0; idx < configGlobal.rallys.length; idx++) {
-                const numR = idx + 1;
+                let mapaPs = {};
                 try {
-                    let mapaPs = {};
-                    try {
-                        const resPs = await fetch(`powerstage_${numR}.csv`);
-                        if (resPs.ok) {
-                            const txtPs = await resPs.text();
-                            mapaPs = procesarTextoPowerStageCSV(txtPs);
-                        }
-                    } catch (e) {}
-
-                    const res = await fetch(`rally_${numR}.csv`);
-                    if (res.ok) {
-                        const txt = await res.text();
-                        const datos = procesarTextoCSV(txt);
-                        if (datos.length > 0) {
-                            historicoRallies.push({ datos, mapaPs });
-                        }
+                    const resPs = await fetch(`powerstage_${numR}.csv`);
+                    if (resPs.ok) {
+                        const txtPs = await resPs.text();
+                        mapaPs = procesarTextoPowerStageCSV(txtPs);
                     }
                 } catch (e) {}
-            }
-        }
 
-        function filtrarCategoriaGeneral(cat) {
-            catGeneralSeleccionada = cat;
-
-            const btns = { 'TODAS': 'btn-gen-todas', '4WD': 'btn-gen-4wd', 'FWD': 'btn-gen-fwd', 'RWD': 'btn-gen-rwd' };
-            Object.keys(btns).forEach(key => {
-                const el = document.getElementById(btns[key]);
-                if (el) {
-                    el.className = (key === cat) 
-                        ? 'active-subtab border px-3 py-1 rounded-md text-xs font-bold transition-all'
-                        : 'bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all';
-                }
-            });
-
-            calcularClasificacionGeneral();
-        }
-
-        function calcularClasificacionGeneral() {
-            const acumulado = {};
-
-            historicoRallies.forEach(item => {
-                const rally = item.datos;
-                const mapaPs = item.mapaPs;
-
-                let lista = rally;
-                if (catGeneralSeleccionada !== 'TODAS') {
-                    lista = rally.filter(p => p.categoria === catGeneralSeleccionada);
-                }
-
-                lista.forEach((p, index) => {
-                    const ptsBase = index < puntosEscala.length ? puntosEscala[index] : 1;
-                    const ptsPs = mapaPs[p.piloto] || 0;
-                    const ptsTotales = ptsBase + ptsPs;
-
-                    if (!acumulado[p.piloto]) {
-                        acumulado[p.piloto] = { piloto: p.piloto, puntos: 0, rallies: 0 };
+                const res = await fetch(`rally_${numR}.csv`);
+                if (res.ok) {
+                    const txt = await res.text();
+                    const datos = procesarTextoCSV(txt);
+                    if (datos.length > 0) {
+                        historicoRallies.push({ datos, mapaPs });
                     }
-                    acumulado[p.piloto].puntos += ptsTotales;
-                    acumulado[p.piloto].rallies += 1;
-                });
-            });
+                }
+            } catch (e) {}
+        }
+    }
 
-            const ranking = Object.values(acumulado).sort((a, b) => b.puntos - a.puntos);
-            const tbodyGen = document.getElementById('tabla-general-body');
-            tbodyGen.innerHTML = '';
+    function filtrarCategoriaGeneral(cat) {
+        catGeneralSeleccionada = cat;
 
-            if (ranking.length === 0) {
-                tbodyGen.innerHTML = '<tr><td colspan="4" class="text-center py-8 text-gray-400">Aún no hay puntos acumulados en esta categoría.</td></tr>';
-                return;
+        const btns = { 'TODAS': 'btn-gen-todas', '4WD': 'btn-gen-4wd', 'FWD': 'btn-gen-fwd', 'RWD': 'btn-gen-rwd' };
+        Object.keys(btns).forEach(key => {
+            const el = document.getElementById(btns[key]);
+            if (el) {
+                el.className = (key === cat) 
+                    ? 'active-subtab border px-3 py-1 rounded-md text-xs font-bold transition-all'
+                    : 'bg-gray-700 hover:bg-gray-600 border border-transparent text-gray-300 px-3 py-1 rounded-md text-xs font-bold transition-all';
+            }
+        });
+
+        calcularClasificacionGeneral();
+    }
+
+    function calcularClasificacionGeneral() {
+        const acumulado = {};
+
+        historicoRallies.forEach(item => {
+            const rally = item.datos;
+            const mapaPs = item.mapaPs;
+
+            let lista = rally;
+            if (catGeneralSeleccionada !== 'TODAS') {
+                lista = rally.filter(p => p.categoria === catGeneralSeleccionada);
             }
 
-            ranking.forEach((p, index) => {
-                const pos = index + 1;
-                const row = `
-                    <tr class="hover:bg-gray-750 transition-colors border-b border-gray-700/30">
-                        <td class="py-3 px-2 text-center font-bold ${pos <= 3 ? 'text-yellow-400' : 'text-gray-300'}">${pos}º</td>
-                        <td class="py-3 px-4 font-semibold text-white">${p.piloto}</td>
-                        <td class="py-3 px-4 text-center text-gray-300">${p.rallies}</td>
-                        <td class="py-3 px-4 text-center font-bold text-yellow-400">${p.puntos}</td>
-                    </tr>
-                `;
-                tbodyGen.innerHTML += row;
+            lista.forEach((p, index) => {
+                const ptsBase = index < puntosEscala.length ? puntosEscala[index] : 1;
+                const ptsPs = mapaPs[p.piloto] || 0;
+                const ptsTotales = ptsBase + ptsPs;
+
+                if (!acumulado[p.piloto]) {
+                    acumulado[p.piloto] = { piloto: p.piloto, puntos: 0, rallies: 0 };
+                }
+                acumulado[p.piloto].puntos += ptsTotales;
+                acumulado[p.piloto].rallies += 1;
             });
+        });
+
+        const ranking = Object.values(acumulado).sort((a, b) => b.puntos - a.puntos);
+        const tbodyGen = document.getElementById('tabla-general-body');
+        tbodyGen.innerHTML = '';
+
+        if (ranking.length === 0) {
+            tbodyGen.innerHTML = '<tr><td colspan="4" class="text-center py-8 text-gray-400">Aún no hay puntos acumulados en esta categoría.</td></tr>';
+            return;
         }
 
-        // CONTADOR LOCAL
-        try {
-            let visitas = localStorage.getItem('visitas_rally_src') || 100;
-            visitas = parseInt(visitas) + 1;
-            localStorage.setItem('visitas_rally_src', visitas);
-            document.getElementById('numero-visitas').textContent = visitas;
-        } catch (e) {
-            document.getElementById('numero-visitas').textContent = '100+';
-        }
-    </script>
-</body>
-</html>
+        ranking.forEach((p, index) => {
+            const pos = index + 1;
+            const row = `
+                <tr class="hover:bg-gray-750 transition-colors border-b border-gray-700/30">
+                    <td class="py-3 px-2 text-center font-bold ${pos <= 3 ? 'text-yellow-400' : 'text-gray-300'}">${pos}º</td>
+                    <td class="py-3 px-4 font-semibold text-white">${p.piloto}</td>
+                    <td class="py-3 px-4 text-center text-gray-300">${p.rallies}</td>
+                    <td class="py-3 px-4 text-center font-bold text-yellow-400">${p.puntos}</td>
+                </tr>
+            `;
+            tbodyGen.innerHTML += row;
+        });
+    }
+
+    // CONTADOR LOCAL
+    try {
+        let visitas = localStorage.getItem('visitas_rally_src') || 100;
+        visitas = parseInt(visitas) + 1;
+        localStorage.setItem('visitas_rally_src', visitas);
+        document.getElementById('numero-visitas').textContent = visitas;
+    } catch (e) {
+        document.getElementById('numero-visitas').textContent = '100+';
+    }
+</script>
