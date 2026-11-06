@@ -591,53 +591,58 @@ function cargarTrofeos() {
             }
         }
 
-        Promise.all([
-            fetch('config.json').then(res => res.json()).catch(() => ({ rallys: [] })),
-            fetch('coches.json').then(res => res.json()).catch(() => ({ "4WD": [], "FWD": [], "RWD": [] }))
-        ]).then(([cfg, coches]) => {
-            configGlobal = cfg;
-            mapaCochesGlobal = coches;
+        // --- CARGA INICIAL BLINDADA ---
+        (async function inicializarWeb() {
+            try {
+                const [cfg, coches] = await Promise.all([
+                    fetch('config.json').then(res => res.json()).catch(() => ({ rallys: [] })),
+                    fetch('coches.json').then(res => res.json()).catch(() => ({ "4WD": [], "FWD": [], "RWD": [] }))
+                ]);
 
-            const selector = document.getElementById('select-rally');
-            if (selector) selector.innerHTML = '';
-            
-            if (cfg.rallys && cfg.rallys.length > 0) {
-                cfg.rallys.forEach((r, idx) => {
-                    const option = document.createElement('option');
-                    const valNum = String(r.num !== undefined ? r.num : (idx + 1));
-                    option.value = valNum;
-                    option.textContent = r.nombre + (r.activo ? ' (En curso)' : '');
-                    if (selector) selector.appendChild(option);
-                });
+                configGlobal = cfg;
+                mapaCochesGlobal = coches;
 
-                // 1. Identificamos el rally ACTIVO para la cabecera, placa y roadbook
-                const activo = cfg.rallys.find(r => r.activo) || cfg.rallys[0];
-                const numActivo = activo.num !== undefined ? activo.num : (cfg.rallys.indexOf(activo) + 1);
-
-                // 2. Buscamos el último rally anterior con resultados para mostrarlo por defecto en la tabla
-                let indiceActivo = cfg.rallys.findIndex(r => r.activo);
-                let rallyParaTabla = activo;
-                let numTabla = numActivo;
-
-                if (indiceActivo > 0) {
-                    rallyParaTabla = cfg.rallys[indiceActivo - 1];
-                    numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : indiceActivo;
-                }
-
-                // Seteamos el desplegable visualmente al rally de la tabla por defecto
-                if (selector) selector.value = String(numTabla);
-
-                // Cargamos la cabecera/placa del ACTIVO, pero los resultados del anterior en la tabla
-                cargarCabeceraRally(activo, numActivo);
-                cargarRallyDesdeCSV(rallyParaTabla, numTabla);
+                const selector = document.getElementById('select-rally');
+                if (selector) selector.innerHTML = '';
                 
-                cargarTodosLosRalliesParaGeneral();
-            } else {
-                cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
+                if (cfg.rallys && cfg.rallys.length > 0) {
+                    cfg.rallys.forEach((r, idx) => {
+                        const option = document.createElement('option');
+                        const valNum = String(r.num !== undefined ? r.num : (idx + 1));
+                        option.value = valNum;
+                        option.textContent = r.nombre + (r.activo ? ' (En curso)' : '');
+                        if (selector) selector.appendChild(option);
+                    });
+
+                    // 1. Identificamos el rally ACTIVO para la cabecera, placa y roadbook
+                    const activo = cfg.rallys.find(r => r.activo) || cfg.rallys[0];
+                    const numActivo = activo.num !== undefined ? activo.num : (cfg.rallys.indexOf(activo) + 1);
+
+                    // 2. Buscamos el último rally anterior con resultados para mostrarlo por defecto en la tabla
+                    let indiceActivo = cfg.rallys.findIndex(r => r.activo);
+                    let rallyParaTabla = activo;
+                    let numTabla = numActivo;
+
+                    if (indiceActivo > 0) {
+                        rallyParaTabla = cfg.rallys[indiceActivo - 1];
+                        numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : indiceActivo;
+                    }
+
+                    // Seteamos el desplegable visualmente al rally de la tabla por defecto
+                    if (selector) selector.value = String(numTabla);
+
+                    // Cargamos la cabecera/placa del ACTIVO, pero los resultados del anterior en la tabla
+                    cargarCabeceraRally(activo, numActivo);
+                    await cargarRallyDesdeCSV(rallyParaTabla, numTabla);
+                    
+                    cargarTodosLosRalliesParaGeneral();
+                } else {
+                    await cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
+                }
+            } catch (err) {
+                console.error("Error al cargar la configuración inicial:", err);
             }
-        }).catch(err => {
-            console.error("Error al cargar la configuración inicial:", err);
-        });
+        })();
 
         function seleccionarRally(valNum) {
             const numInt = parseInt(valNum, 10);
