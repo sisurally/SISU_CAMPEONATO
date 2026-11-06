@@ -591,19 +591,27 @@ function cargarTrofeos() {
             }
         }
 
-        // --- CARGA INICIAL COMPATIBLE Y LIMPIA ---
-        Promise.all([
-            fetch('config.json').then(res => res.json()).catch(() => ({ rallys: [] })),
-            fetch('coches.json').then(res => res.json()).catch(() => ({ "4WD": [], "FWD": [], "RWD": [] }))
-        ]).then(([cfg, coches]) => {
-            configGlobal = cfg;
-            mapaCochesGlobal = coches;
+        // --- CARGA INICIAL LIMPIA Y SIN ERRORES ---
+        async function iniciarPaginaSRC() {
+            try {
+                const resConfig = await fetch('config.json');
+                configGlobal = resConfig.ok ? await resConfig.json() : { rallys: [] };
+            } catch (e) {
+                configGlobal = { rallys: [] };
+            }
+
+            try {
+                const resCoches = await fetch('coches.json');
+                mapaCochesGlobal = resCoches.ok ? await resCoches.json() : { "4WD": [], "FWD": [], "RWD": [] };
+            } catch (e) {
+                mapaCochesGlobal = { "4WD": [], "FWD": [], "RWD": [] };
+            }
 
             const selector = document.getElementById('select-rally');
             if (selector) selector.innerHTML = '';
             
-            if (cfg.rallys && cfg.rallys.length > 0) {
-                cfg.rallys.forEach((r, idx) => {
+            if (configGlobal.rallys && configGlobal.rallys.length > 0) {
+                configGlobal.rallys.forEach((r, idx) => {
                     const option = document.createElement('option');
                     const valNum = String(r.num !== undefined ? r.num : (idx + 1));
                     option.value = valNum;
@@ -612,16 +620,16 @@ function cargarTrofeos() {
                 });
 
                 // 1. Identificamos el rally ACTIVO para la cabecera, placa y roadbook
-                const activo = cfg.rallys.find(r => r.activo) || cfg.rallys[0];
-                const numActivo = activo.num !== undefined ? activo.num : (cfg.rallys.indexOf(activo) + 1);
+                const activo = configGlobal.rallys.find(r => r.activo) || configGlobal.rallys[0];
+                const numActivo = activo.num !== undefined ? activo.num : (configGlobal.rallys.indexOf(activo) + 1);
 
                 // 2. Buscamos el último rally anterior con resultados para mostrarlo por defecto en la tabla
-                let indiceActivo = cfg.rallys.findIndex(r => r.activo);
+                let indiceActivo = configGlobal.rallys.findIndex(r => r.activo);
                 let rallyParaTabla = activo;
                 let numTabla = numActivo;
 
                 if (indiceActivo > 0) {
-                    rallyParaTabla = cfg.rallys[indiceActivo - 1];
+                    rallyParaTabla = configGlobal.rallys[indiceActivo - 1];
                     numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : indiceActivo;
                 }
 
@@ -630,15 +638,16 @@ function cargarTrofeos() {
 
                 // Cargamos la cabecera/placa del ACTIVO, pero los resultados del anterior en la tabla
                 cargarCabeceraRally(activo, numActivo);
-                cargarRallyDesdeCSV(rallyParaTabla, numTabla);
+                await cargarRallyDesdeCSV(rallyParaTabla, numTabla);
                 
                 cargarTodosLosRalliesParaGeneral();
             } else {
-                cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
+                await cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
             }
-        }).catch(err => {
-            console.error("Error al cargar la configuración inicial:", err);
-        });
+        }
+
+        // Ejecutamos la función de inicio
+        iniciarPaginaSRC();
 
         function seleccionarRally(valNum) {
             const numInt = parseInt(valNum, 10);
