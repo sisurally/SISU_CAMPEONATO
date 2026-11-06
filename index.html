@@ -37,7 +37,7 @@
         <!-- Imagen de la Placa del Rally y Botón de Enlace -->
         <div id="contenedor-placa" class="flex flex-col items-center mb-6 hidden">
             <img id="imagen-placa" src="" alt="Placa del Rally" class="max-h-48 md:max-h-64 object-contain drop-shadow-xl rounded-lg mb-4">
-
+            
             <a id="btn-link-rally" href="#" target="_blank" class="hidden inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-gray-950 font-extrabold px-6 py-2.5 rounded-full transition-all shadow-lg hover:scale-105 uppercase text-xs md:text-sm tracking-wide">
                 <span>🏁​</span> ROADBOOK
             </a>
@@ -186,13 +186,14 @@
             </a>
             <p class="text-xs text-gray-400 mt-3 text-center">Haz clic en la imagen para verla a tamaño completo o descargarla.</p>
         </div>
+    </div>
 
         <!-- SECCIÓN CAMPEONATOS -->
 <div id="vista-campeonatos" class="hidden max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-2xl mb-8 text-gray-300">
     <h2 class="text-xl font-extrabold text-yellow-400 mb-6 flex items-center gap-2 border-b border-gray-800 pb-3">
         <span>🏆</span> FORMATOS DE CAMPEONATO
     </h2>
-
+    
     <div class="space-y-6">
         <!-- Variante 1: Tracción -->
         <div class="bg-gray-950 p-5 rounded-lg border border-gray-800">
@@ -225,6 +226,8 @@ Las clasificaciones son: GENERAL + S2000 + KIT CAR + GRUPO B
 GENERAL + MICRO + MID + MAXI
             </p>
         </div>
+    </div>
+</div>
 
         <!-- SECCIÓN: SALA DE TROFEOS -->
         <div id="vista-trofeos" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
@@ -323,7 +326,7 @@ GENERAL + MICRO + MID + MAXI
         <span class="text-gray-600 text-xl font-bold">•</span>
         <a href="https://www.wrsim.com/#" target="_blank" rel="noopener noreferrer" class="text-2xl font-black text-yellow-400 hover:text-yellow-300 transition-colors tracking-wide">WRSim</a>
     </div>
-
+        
         <p>© SISU RALLY COMPETICIÓN - RBR - RSF Plugin</p>
         <div class="flex items-center gap-2 bg-gray-800/80 px-4 py-1.5 rounded-full border border-gray-700 text-gray-300 font-semibold">
             <span>👁️ Visitas a la web:</span>
@@ -339,7 +342,7 @@ GENERAL + MICRO + MID + MAXI
         let historicoRallies = [];
         let catRallySeleccionada = 'TODAS';
         let catGeneralSeleccionada = 'TODAS';
-
+        
         const puntosEscala = [50, 45, 42, 40, 38, 36, 34, 32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 1];
         // Escala oficial Power Stage: 8 a 1 punto (8 primeros clasificados)
         const puntosPowerStageEscala = [8, 7, 6, 5, 4, 3, 2, 1];
@@ -352,7 +355,7 @@ GENERAL + MICRO + MID + MAXI
             const btnTrofeos = document.getElementById('btn-trofeos');
             const btnNoticias = document.getElementById('btn-noticias');
             const btnInfo = document.getElementById('btn-info');
-
+            
             const vistaRally = document.getElementById('vista-rally');
             const vistaGeneral = document.getElementById('vista-general');
             const vistaCalendario = document.getElementById('vista-calendario');
@@ -360,7 +363,7 @@ GENERAL + MICRO + MID + MAXI
             const vistaTrofeos = document.getElementById('vista-trofeos');
             const vistaNoticias = document.getElementById('vista-noticias');
             const vistaInfo = document.getElementById('vista-info');
-
+            
             const contPlaca = document.getElementById('contenedor-placa');
             const selectorCont = document.getElementById('select-rally-container');
 
@@ -495,7 +498,7 @@ function cargarTrofeos() {
                 const res = await fetch('noticias.json?v=' + new Date().getTime());
                 if (!res.ok) throw new Error('No noticias');
                 const noticias = await res.json();
-
+                
                 if (noticias.length === 0) {
                     contenedor.innerHTML = '<p class="text-gray-400 p-4 text-center">No hay comunicados publicados.</p>';
                     return;
@@ -530,7 +533,7 @@ function cargarTrofeos() {
 
             const selector = document.getElementById('select-rally');
             selector.innerHTML = '';
-
+            
             if (cfg.rallys && cfg.rallys.length > 0) {
                 cfg.rallys.forEach((r, idx) => {
                     const option = document.createElement('option');
