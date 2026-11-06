@@ -72,7 +72,7 @@
             <div class="flex flex-wrap gap-2 sm:gap-3">
                 <button id="btn-rally" onclick="cambiarPestana('rally')" 
                     class="active-tab px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                    Rally
+                    Último Rally
                 </button>
                 <button id="btn-general" onclick="cambiarPestana('general')" 
                     class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
@@ -375,6 +375,25 @@
                 vistaRally.classList.remove('hidden');
                 contPlaca.classList.remove('hidden');
                 selectorCont.classList.remove('hidden');
+
+                // CORRECCIÓN: Al pulsar el botón "Último Rally", cargamos automáticamente el último rally disputado con resultados
+                if (configGlobal && configGlobal.rallys) {
+                    const selector = document.getElementById('select-rally');
+                    let indiceActivo = configGlobal.rallys.findIndex(r => r.activo);
+                    let rallyParaTabla = configGlobal.rallys[0];
+                    let numTabla = 1;
+
+                    if (indiceActivo > 0) {
+                        rallyParaTabla = configGlobal.rallys[indiceActivo - 1];
+                        numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : indiceActivo;
+                    } else if (indiceActivo === -1 && configGlobal.rallys.length > 0) {
+                        rallyParaTabla = configGlobal.rallys[configGlobal.rallys.length - 1];
+                        numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : configGlobal.rallys.length;
+                    }
+
+                    if (selector) selector.value = String(numTabla);
+                    cargarRallyDesdeCSV(rallyParaTabla, numTabla);
+                }
             } else if (vista === 'general') {
                 btnGeneral.className = claseActiva;
                 vistaGeneral.classList.remove('hidden');
@@ -613,7 +632,19 @@ function cargarTrofeos() {
 
                 const activo = cfg.rallys.find(r => r.activo) || cfg.rallys[0];
                 const numActivo = activo.num !== undefined ? activo.num : (cfg.rallys.indexOf(activo) + 1);
-                cargarRallyDesdeCSV(activo, numActivo);
+                
+                let indiceActivo = cfg.rallys.findIndex(r => r.activo);
+                let rallyParaTabla = activo;
+                let numTabla = numActivo;
+
+                if (indiceActivo > 0) {
+                    rallyParaTabla = cfg.rallys[indiceActivo - 1];
+                    numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : indiceActivo;
+                }
+
+                if (selector) selector.value = String(numTabla);
+
+                cargarRallyDesdeCSV(rallyParaTabla, numTabla);
                 cargarTodosLosRalliesParaGeneral();
             } else {
                 cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
