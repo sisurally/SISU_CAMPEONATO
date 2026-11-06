@@ -53,14 +53,15 @@
                 class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
                 Noticias
             </button>
-            <button id="btn-setups" onclick="cambiarPestana('setups')" 
-                class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                Setups
-            </button>
-            <button id="btn-notas" onclick="cambiarPestana('notas')" 
-                class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
-                Notas
-            </button>
+            <!-- Botón CALENDARIO -->
+<button id="btn-calendario" onclick="cambiarPestana('calendario')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
+    Calendario
+</button>
+
+<!-- Botón CAMPEONATOS -->
+<button id="btn-campeonatos" onclick="cambiarPestana('campeonatos')" class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
+    Campeonatos
+</button>
             <button id="btn-trofeos" onclick="cambiarPestana('trofeos')" 
                 class="bg-gray-800 hover:bg-gray-700 text-gray-300 px-5 py-2.5 rounded-lg font-bold transition-all shadow-md text-sm md:text-base">
                 Sala de trofeos
@@ -173,45 +174,60 @@
             </div>
         </div>
 
-        <!-- SECCIÓN: SETUPS -->
-        <div id="vista-setups" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
-            <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
-                <span>⚙️</span> Descarga de Setups
-            </h2>
+      <!-- SECCIÓN CALENDARIO -->
+    <div id="vista-calendario" class="hidden max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-2xl mb-8">
+        <h2 class="text-xl font-extrabold text-yellow-400 mb-4 flex items-center gap-2">
+            <span>📅</span> CALENDARIO OFICIAL DE LA TEMPORADA
+        </h2>
+        <div class="flex flex-col items-center justify-center">
+            <!-- Enlace y origen apuntando al nombre exacto de tu archivo en GitHub -->
+            <a href="CALENDARIO TRACCION.png" target="_blank" class="block group cursor-pointer">
+                <img src="CALENDARIO TRACCION.png" alt="Calendario Oficial" class="max-w-full rounded-lg shadow-lg border border-gray-700 transition-transform duration-300 group-hover:scale-[1.01]">
+            </a>
+            <p class="text-xs text-gray-400 mt-3 text-center">Haz clic en la imagen para verla a tamaño completo o descargarla.</p>
+        </div>
+    </div>
 
-            <!-- Subtexto explicativo de Setups -->
-  <p class="text-sm text-gray-300 mt-2 mb-4">
-    Setups personales. Aptos y válidos, si no te sirven 100%, son una buena base.
-  </p>
-            
-            <div id="lista-setups">
-                <p class="text-gray-400 p-4 text-center">Cargando setups...</p>
-            </div>
+        <!-- SECCIÓN CAMPEONATOS -->
+<div id="vista-campeonatos" class="hidden max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-2xl mb-8 text-gray-300">
+    <h2 class="text-xl font-extrabold text-yellow-400 mb-6 flex items-center gap-2 border-b border-gray-800 pb-3">
+        <span>🏆</span> FORMATOS DE CAMPEONATO
+    </h2>
+    
+    <div class="space-y-6">
+        <!-- Variante 1: Tracción -->
+        <div class="bg-gray-950 p-5 rounded-lg border border-gray-800">
+            <h3 class="text-lg font-bold text-yellow-500 mb-2">1. TRACCIÓN</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+                [En el modo de campeonato TRACCIÓN, los pilotos pueden competir libremente en monturas de tracción total, (AWD), delantera, (FWD), y trasera, (RWD), de entre los vehículos disponibles. 
+
+Las clasificaciones son: GENERAL + AWD + FWD + RWD]
+            </p>
         </div>
 
-        <!-- SECCIÓN: NOTAS -->
-        <div id="vista-notas" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
-            <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
-                <span>📝</span> Descarga de Pacenotes / Notas
-            </h2>
+        <!-- Variante 2: Mito & Furia -->
+        <div class="bg-gray-950 p-5 rounded-lg border border-gray-800">
+            <h3 class="text-lg font-bold text-yellow-500 mb-2">2. MITO & FURIA</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+                [En este formato, los pilotos nuevamente, pueden elegir libremente correr con vehículos ue marcaron época, tales como los S2000, los KIT CAR, y GRUPO B.
 
-            <!-- Subtexto explicativo de Notas -->
-  <div class="text-sm text-gray-300 mt-2 mb-4 space-y-2">
-    <p>
-      Estas notas funcionan únicamente con el <strong>MOD DE COPILOTO de Echedei Benítez</strong>, al cual puedes acceder a través de su 
-      <a href="https://discord.com/channels/808100241794400317/1387100333603557529" target="_blank" rel="noopener noreferrer" class="text-yellow-400 underline hover:text-yellow-300">
-        Discord oficial
-      </a>.
-    </p>
-    <p>
-      Si te saturan las notas FULL, y las BÁSICAS te resultan demasiado justas, puedes probar mis notas.
-    </p>
-  </div>
-            
-            <div id="lista-notas">
-                <p class="text-gray-400 p-4 text-center">Cargando notas...</p>
-            </div>
+Las clasificaciones son: GENERAL + S2000 + KIT CAR + GRUPO B]
+            </p>
         </div>
+
+        <!-- Variante 3: Denostados -->
+        <div class="bg-gray-950 p-5 rounded-lg border border-gray-800">
+            <h3 class="text-lg font-bold text-yellow-500 mb-2">3. DENOSTADOS</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+                [La joya reivindicativa y divertida del ciclo organizativo de SRC. Trata de competir con los coches menos utilizados y más denostados del plugin de RSF. 
+
+Éstos se han englobado en 3 categorías en base a similitudes técnicas/específicas. Se corre libremente y se configuran 3 clasificaciones como es norma.
+
+GENERAL + MICRO + MID + MAXI]
+            </p>
+        </div>
+    </div>
+</div>
 
         <!-- SECCIÓN: SALA DE TROFEOS -->
         <div id="vista-trofeos" class="bg-gray-800 rounded-xl p-4 md:p-6 shadow-2xl border border-gray-700 hidden">
