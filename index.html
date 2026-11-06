@@ -673,9 +673,8 @@ function cargarTrofeos() {
         async function cargarRallyDesdeCSV(rallyInfo, numOrden) {
             const imgPlaca = document.getElementById('imagen-placa');
             const contPlaca = document.getElementById('contenedor-placa');
-            const btnLink = document.getElementById('btn-link-rally');
 
-            // 1. La placa refleja el rally que estás visualizando (el seleccionado o el último)
+            // La placa refleja el rally que estás visualizando (el seleccionado o el último)
             if (rallyInfo && rallyInfo.placa && rallyInfo.placa.trim() !== '') {
                 imgPlaca.src = rallyInfo.placa;
                 contPlaca.classList.remove('hidden');
@@ -684,26 +683,7 @@ function cargarTrofeos() {
                 contPlaca.classList.add('hidden');
             }
 
-            // 2. El botón ROADBOOK busca SIEMPRE el link del rally ACTIVO real (el que tiene true)
-            let linkRoadbook = '#';
-            if (configGlobal && configGlobal.rallys) {
-                const rallyActivoReal = configGlobal.rallys.find(r => r.activo);
-                if (rallyActivoReal && rallyActivoReal.link) {
-                    linkRoadbook = rallyActivoReal.link;
-                }
-            }
-
-            if (linkRoadbook && linkRoadbook !== '#') {
-                btnLink.href = linkRoadbook;
-                btnLink.classList.remove('hidden');
-            } else {
-                btnLink.href = '#';
-                btnLink.classList.add('hidden');
-            }
-
             document.getElementById('titulo-rally').innerHTML = `<span>🏁</span> ${rallyInfo.nombre || ('Rally ' + numOrden)}`;
-            
-            // ... (el resto de tu función de carga de CSV sigue exactamente igual aquí abajo)
 
             const tbodyRally = document.getElementById('tabla-rally-body');
             tbodyRally.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-gray-400">Cargando CSV de tiempos...</td></tr>';
