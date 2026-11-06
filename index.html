@@ -591,62 +591,34 @@ function cargarTrofeos() {
             }
         }
 
-        // --- CARGA INICIAL CLÁSICA E INFALIBLE ---
-        function iniciarPaginaSRC() {
-            Promise.all([
-                fetch('config.json').then(function(res) { return res.json(); }).catch(function() { return { rallys: [] }; }),
-                fetch('coches.json').then(function(res) { return res.json(); }).catch(function() { return { "4WD": [], "FWD": [], "RWD": [] }; })
-            ]).then(function(resultados) {
-                var cfg = resultados[0];
-                var coches = resultados[1];
+        Promise.all([
+            fetch('config.json').then(res => res.json()).catch(() => ({ rallys: [] })),
+            fetch('coches.json').then(res => res.json()).catch(() => ({ "4WD": [], "FWD": [], "RWD": [] }))
+        ]).then(([cfg, coches]) => {
+            configGlobal = cfg;
+            mapaCochesGlobal = coches;
 
-                configGlobal = cfg;
-                mapaCochesGlobal = coches;
+            const selector = document.getElementById('select-rally');
+            selector.innerHTML = '';
+            
+            if (cfg.rallys && cfg.rallys.length > 0) {
+                cfg.rallys.forEach((r, idx) => {
+                    const option = document.createElement('option');
+                    const valNum = String(r.num !== undefined ? r.num : (idx + 1));
+                    option.value = valNum;
+                    option.textContent = r.nombre + (r.activo ? ' (En curso)' : '');
+                    if (r.activo) option.selected = true;
+                    selector.appendChild(option);
+                });
 
-                var selector = document.getElementById('select-rally');
-                if (selector) selector.innerHTML = '';
-                
-                if (cfg.rallys && cfg.rallys.length > 0) {
-                    cfg.rallys.forEach(function(r, idx) {
-                        var option = document.createElement('option');
-                        var valNum = String(r.num !== undefined ? r.num : (idx + 1));
-                        option.value = valNum;
-                        option.textContent = r.nombre + (r.activo ? ' (En curso)' : '');
-                        if (selector) selector.appendChild(option);
-                    });
-
-                    // 1. Identificamos el rally ACTIVO para la cabecera, placa y roadbook
-                    var activo = cfg.rallys.find(function(r) { return r.activo; }) || cfg.rallys[0];
-                    var numActivo = activo.num !== undefined ? activo.num : (cfg.rallys.indexOf(activo) + 1);
-
-                    // 2. Buscamos el último rally anterior con resultados para mostrarlo por defecto en la tabla
-                    var indiceActivo = cfg.rallys.findIndex(function(r) { return r.activo; });
-                    var rallyParaTabla = activo;
-                    var numTabla = numActivo;
-
-                    if (indiceActivo > 0) {
-                        rallyParaTabla = cfg.rallys[indiceActivo - 1];
-                        numTabla = rallyParaTabla.num !== undefined ? rallyParaTabla.num : indiceActivo;
-                    }
-
-                    // Seteamos el desplegable visualmente al rally de la tabla por defecto
-                    if (selector) selector.value = String(numTabla);
-
-                    // Cargamos la cabecera/placa del ACTIVO, pero los resultados del anterior en la tabla
-                    cargarCabeceraRally(activo, numActivo);
-                    cargarRallyDesdeCSV(rallyParaTabla, numTabla);
-                    
-                    cargarTodosLosRalliesParaGeneral();
-                } else {
-                    cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
-                }
-            }).catch(function(err) {
-                console.error("Error al cargar la configuración inicial:", err);
-            });
-        }
-
-        // Ejecutamos la carga al iniciar
-        iniciarPaginaSRC();
+                const activo = cfg.rallys.find(r => r.activo) || cfg.rallys[0];
+                const numActivo = activo.num !== undefined ? activo.num : (cfg.rallys.indexOf(activo) + 1);
+                cargarRallyDesdeCSV(activo, numActivo);
+                cargarTodosLosRalliesParaGeneral();
+            } else {
+                cargarRallyDesdeCSV({ nombre: 'Rally 1' }, 1);
+            }
+        });
 
         function seleccionarRally(valNum) {
             const numInt = parseInt(valNum, 10);
@@ -668,8 +640,25 @@ function cargarTrofeos() {
         }
 
         async function cargarRallyDesdeCSV(rallyInfo, numOrden) {
-            // Llamamos a la cabecera separada para pintar placa y roadbook
-            cargarCabeceraRally(rallyInfo, numOrden);
+            const imgPlaca = document.getElementById('imagen-placa');
+            const contPlaca = document.getElementById('contenedor-placa');
+            const btnLink = document.getElementById('btn-link-rally');
+
+            if (rallyInfo && rallyInfo.placa && rallyInfo.placa.trim() !== '') {
+                imgPlaca.src = rallyInfo.placa;
+                contPlaca.classList.remove('hidden');
+            } else {
+                imgPlaca.src = '';
+                contPlaca.classList.add('hidden');
+            }
+
+            if (rallyInfo && rallyInfo.link && rallyInfo.link.trim() !== '') {
+                btnLink.href = rallyInfo.link;
+                btnLink.classList.remove('hidden');
+            } else {
+                btnLink.href = '#';
+                btnLink.classList.add('hidden');
+            }
 
             document.getElementById('titulo-rally').innerHTML = `<span>🏁</span> ${rallyInfo.nombre || ('Rally ' + numOrden)}`;
 
@@ -687,21 +676,6 @@ function cargarTrofeos() {
             } catch (e) {
                 mapaPowerStageActual = {};
             }
-
-            try {
-                const resCsv = await fetch(`rally_${numOrden}.csv`);
-                if (!resCsv.ok) throw new Error("Archivo CSV no encontrado");
-
-                const textoCsv = await resCsv.text();
-                datosRallyProcesados = procesarTextoCSV(textoCsv);
-
-                filtrarCategoriaRally(catRallySeleccionada);
-
-            } catch (err) {
-                datosRallyProcesados = [];
-                tbodyRally.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-gray-400">Este rally aún no se ha disputado o falta subir el archivo rally_' + numOrden + '.csv</td></tr>';
-            }
-        }
 
             try {
                 const resCsv = await fetch(`rally_${numOrden}.csv`);
@@ -904,28 +878,6 @@ function cargarTrofeos() {
                 `;
                 tbodyGen.innerHTML += row;
             });
-        }
-
-        function cargarCabeceraRally(rallyInfo, numOrden) {
-            const imgPlaca = document.getElementById('imagen-placa');
-            const contPlaca = document.getElementById('contenedor-placa');
-            const btnLink = document.getElementById('btn-link-rally');
-
-            if (rallyInfo && rallyInfo.placa && rallyInfo.placa.trim() !== '') {
-                imgPlaca.src = rallyInfo.placa;
-                contPlaca.classList.remove('hidden');
-            } else {
-                imgPlaca.src = '';
-                contPlaca.classList.add('hidden');
-            }
-
-            if (rallyInfo && rallyInfo.link && rallyInfo.link.trim() !== '') {
-                btnLink.href = rallyInfo.link;
-                btnLink.classList.remove('hidden');
-            } else {
-                btnLink.href = '#';
-                btnLink.classList.add('hidden');
-            }
         }
 
         // CONTADOR LOCAL
