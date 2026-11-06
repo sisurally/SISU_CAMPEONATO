@@ -347,19 +347,19 @@ GENERAL + MICRO + MID + MAXI]
         // Escala oficial Power Stage: 8 a 1 punto (8 primeros clasificados)
         const puntosPowerStageEscala = [8, 7, 6, 5, 4, 3, 2, 1];
 
-        function cambiarPestana(vista) {
+       function cambiarPestana(vista) {
             const btnRally = document.getElementById('btn-rally');
             const btnGeneral = document.getElementById('btn-general');
-            const btnSetups = document.getElementById('btn-setups');
-            const btnNotas = document.getElementById('btn-notas');
+            const btnCalendario = document.getElementById('btn-calendario');
+            const btnCampeonatos = document.getElementById('btn-campeonatos');
             const btnTrofeos = document.getElementById('btn-trofeos');
             const btnNoticias = document.getElementById('btn-noticias');
             const btnInfo = document.getElementById('btn-info');
             
             const vistaRally = document.getElementById('vista-rally');
             const vistaGeneral = document.getElementById('vista-general');
-            const vistaSetups = document.getElementById('vista-setups');
-            const vistaNotas = document.getElementById('vista-notas');
+            const vistaCalendario = document.getElementById('vista-calendario');
+            const vistaCampeonatos = document.getElementById('vista-campeonatos');
             const vistaTrofeos = document.getElementById('vista-trofeos');
             const vistaNoticias = document.getElementById('vista-noticias');
             const vistaInfo = document.getElementById('vista-info');
@@ -372,16 +372,16 @@ GENERAL + MICRO + MID + MAXI]
 
             btnRally.className = claseInactiva;
             btnGeneral.className = claseInactiva;
-            if (btnSetups) btnSetups.className = claseInactiva;
-            if (btnNotas) btnNotas.className = claseInactiva;
+            if (btnCalendario) btnCalendario.className = claseInactiva;
+            if (btnCampeonatos) btnCampeonatos.className = claseInactiva;
             if (btnTrofeos) btnTrofeos.className = claseInactiva;
             btnNoticias.className = claseInactiva;
             btnInfo.className = claseInactiva;
 
             vistaRally.classList.add('hidden');
             vistaGeneral.classList.add('hidden');
-            if (vistaSetups) vistaSetups.classList.add('hidden');
-            if (vistaNotas) vistaNotas.classList.add('hidden');
+            if (vistaCalendario) vistaCalendario.classList.add('hidden');
+            if (vistaCampeonatos) vistaCampeonatos.classList.add('hidden');
             if (vistaTrofeos) vistaTrofeos.classList.add('hidden');
             vistaNoticias.classList.add('hidden');
             vistaInfo.classList.add('hidden');
@@ -397,19 +397,17 @@ GENERAL + MICRO + MID + MAXI]
                 contPlaca.classList.add('hidden');
                 selectorCont.classList.add('hidden');
                 calcularClasificacionGeneral();
-            } else if (vista === 'setups') {
-                if (btnSetups) btnSetups.className = claseActiva;
-                if (vistaSetups) vistaSetups.classList.remove('hidden');
+            } else if (vista === 'calendario') {
+                if (btnCalendario) btnCalendario.className = claseActiva;
+                if (vistaCalendario) vistaCalendario.classList.remove('hidden');
                 contPlaca.classList.add('hidden');
                 selectorCont.classList.add('hidden');
-                cargarSetups();
-            } else if (vista === 'notas') {
-                if (btnNotas) btnNotas.className = claseActiva;
-                if (vistaNotas) vistaNotas.classList.remove('hidden');
+            } else if (vista === 'campeonatos') {
+                if (btnCampeonatos) btnCampeonatos.className = claseActiva;
+                if (vistaCampeonatos) vistaCampeonatos.classList.remove('hidden');
                 contPlaca.classList.add('hidden');
                 selectorCont.classList.add('hidden');
-                cargarNotas();
-             } else if (vista === 'trofeos') {
+            } else if (vista === 'trofeos') {
                 if (btnTrofeos) btnTrofeos.className = claseActiva;
                 if (vistaTrofeos) vistaTrofeos.classList.remove('hidden');
                 contPlaca.classList.add('hidden');
@@ -490,87 +488,6 @@ function cargarTrofeos() {
                     const cont = document.getElementById('contenedor-trofeos');
                     if (cont) {
                         cont.innerHTML = '<p class="text-gray-400 text-center col-span-full">No se pudo cargar el archivo trofeos.json o aún no se ha creado.</p>';
-                    }
-                });
-        }
-        
-        function cargarSetups() {
-            fetch('SETUPS.json?v=' + new Date().getTime())
-                .then(response => {
-                    if (!response.ok) throw new Error('Error HTTP ' + response.status);
-                    return response.json();
-                })
-                .then(data => {
-                    const contenedorSetups = document.getElementById('lista-setups');
-                    if (!contenedorSetups) return;
-
-                    if (!data || data.length === 0) {
-                        contenedorSetups.innerHTML = '<p class="text-gray-500 italic text-center p-4">No hay setups disponibles.</p>';
-                        return;
-                    }
-
-                    let html = '<ul class="space-y-3">';
-                    data.forEach(item => {
-                        html += `
-                            <li class="flex justify-between items-center bg-gray-900/80 p-4 rounded-xl border border-gray-700 shadow-md">
-                                <div>
-                                    <strong class="text-yellow-400 text-base md:text-lg block">${item.coche}</strong> 
-                                    <span class="text-gray-400 text-sm">Especialidad / Tipo: ${item.tipo}</span>
-                                </div>
-                                <a href="${encodeURI(item.archivo)}" download class="bg-yellow-500 hover:bg-yellow-400 text-black font-extrabold px-4 py-2 rounded-lg text-xs md:text-sm uppercase tracking-wider transition-all shadow">
-                                    Descargar Setup
-                                </a>
-                            </li>
-                        `;
-                    });
-                    html += '</ul>';
-                    contenedorSetups.innerHTML = html;
-                })
-                .catch(error => {
-                    console.error("Error cargando SETUPS:", error);
-                    const contenedorSetups = document.getElementById('lista-setups');
-                    if (contenedorSetups) {
-                        contenedorSetups.innerHTML = '<p class="text-gray-400 italic text-center p-4">No se pudo cargar SETUPS.json o aún no hay setups disponibles.</p>';
-                    }
-                });
-        }
-
-        function cargarNotas() {
-            fetch('NOTAS.json?v=' + new Date().getTime())
-                .then(response => {
-                    if (!response.ok) throw new Error('Error HTTP ' + response.status);
-                    return response.json();
-                })
-                .then(data => {
-                    const contenedorNotas = document.getElementById('lista-notas');
-                    if (!contenedorNotas) return;
-
-                    if (!data || data.length === 0) {
-                        contenedorNotas.innerHTML = '<p class="text-gray-500 italic text-center p-4">No hay notas disponibles.</p>';
-                        return;
-                    }
-
-                    let html = '<ul class="space-y-3">';
-                    data.forEach(item => {
-                        html += `
-                            <li class="flex justify-between items-center bg-gray-900/80 p-4 rounded-xl border border-gray-700 shadow-md">
-                                <div>
-                                    <strong class="text-yellow-400 text-base md:text-lg block">Tramo: ${item.tramo}</strong>
-                                </div>
-                                <a href="${encodeURI(item.archivo)}" download class="bg-yellow-500 hover:bg-yellow-400 text-black font-extrabold px-4 py-2 rounded-lg text-xs md:text-sm uppercase tracking-wider transition-all shadow">
-                                    Descargar Nota
-                                </a>
-                            </li>
-                        `;
-                    });
-                    html += '</ul>';
-                    contenedorNotas.innerHTML = html;
-                })
-                .catch(error => {
-                    console.error("Error cargando NOTAS:", error);
-                    const contenedorNotas = document.getElementById('lista-notas');
-                    if (contenedorNotas) {
-                        contenedorNotas.innerHTML = '<p class="text-gray-400 italic text-center p-4">No se pudo cargar NOTAS.json o aún no hay notas disponibles.</p>';
                     }
                 });
         }
