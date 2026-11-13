@@ -511,9 +511,8 @@ function cargarTrofeos() {
 
         const noticiasOrdenadas = [...noticias].reverse();
 
-        // --- AQUÍ DEBEN IR LAS DOS LÍNEAS ---
+        // --- LLAMAMOS AQUÍ A LA VERIFICACIÓN PARA QUE ENCIENDA/APAGUE EL PUNTO ---
         verificarNoticiasNuevas(noticiasOrdenadas);
-        marcarNoticiasComoLeidas(noticiasOrdenadas);
 
         contenedor.innerHTML = noticiasOrdenadas.map(n => `
             <div class="bg-gray-900/80 border-l-4 ${n.color === 'yellow' ? 'border-yellow-500' : 'border-blue-500'} p-5 rounded-r-xl shadow-lg">
@@ -824,15 +823,19 @@ function cargarTrofeos() {
 
         // --- SISTEMA DE AVISO DE NOTICIAS NUEVAS ---
 
+        // 1. Comprueba al cargar la página si la última noticia ya fue leída
 function verificarNoticiasNuevas(listaNoticias) {
     if (!listaNoticias || listaNoticias.length === 0) return;
 
-    const ultimaNoticiaID = listaNoticias[0].id || listaNoticias[0].fecha; 
-    const noticiaLeida = localStorage.getItem('ultima_noticia_leida');
+    // Convertimos siempre a String (texto) para evitar problemas de tipos
+    const ultimaNoticiaID = String(listaNoticias[0].id || listaNoticias[0].fecha);
+    idUltimaNoticiaGlobal = ultimaNoticiaID;
 
+    const noticiaLeida = localStorage.getItem('ultima_noticia_leida');
     const badge = document.getElementById('badge-noticias');
     if (!badge) return;
 
+    // Si el ID actual es distinto al guardado, hay aviso nuevo
     if (ultimaNoticiaID !== noticiaLeida) {
         badge.classList.remove('hidden');
     } else {
@@ -840,21 +843,14 @@ function verificarNoticiasNuevas(listaNoticias) {
     }
 }
 
-// Ahora esta función solo apaga el punto y guarda que ya está leído
+// 2. Se ejecuta al hacer clic en el botón de Noticias
 function marcarNoticiasComoLeidas() {
     const badge = document.getElementById('badge-noticias');
     if (badge) {
         badge.classList.add('hidden');
-        // Guardamos en la memoria del navegador que ya se leyó la última noticia
-        fetch('noticias.json?v=' + new Date().getTime())
-            .then(res => res.json())
-            .then(noticias => {
-                if (noticias && noticias.length > 0) {
-                    const noticiasOrdenadas = [...noticias].reverse();
-                    const ultimaNoticiaID = noticiasOrdenadas[0].id || noticiasOrdenadas[0].fecha;
-                    localStorage.setItem('ultima_noticia_leida', ultimaNoticiaID);
-                }
-            }).catch(e => {});
+    }
+    if (idUltimaNoticiaGlobal) {
+        localStorage.setItem('ultima_noticia_leida', idUltimaNoticiaGlobal);
     }
 }
 
@@ -870,15 +866,20 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(err => console.log("Comprobación inicial de noticias en segundo plano sin novedad."));
 });
-        // CONTADOR LOCAL
-        try {
-            let visitas = localStorage.getItem('visitas_rally_src') || 100;
-            visitas = parseInt(visitas) + 1;
-            localStorage.setItem('visitas_rally_src', visitas);
-            document.getElementById('numero-visitas').textContent = visitas;
-        } catch (e) {
-            document.getElementById('numero-visitas').textContent = '100+';
-        }
+       
+// CONTADOR LOCAL SEGURO
+try {
+    const elVisitas = document.getElementById('numero-visitas');
+    if (elVisitas) {
+        let visitas = localStorage.getItem('visitas rally src') || 100;
+        visitas = parseInt(visitas) + 1;
+        localStorage.setItem('visitas_rally_src', visitas);
+        elVisitas.textContent = visitas;
+    }
+} catch (e) {
+    // Si hay cualquier fallo, el script sigue funcionando con total normalidad
+}
     </script>
 </body>
 </html>
+
