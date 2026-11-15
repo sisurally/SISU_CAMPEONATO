@@ -19,7 +19,7 @@
 </head>
 <body class="bg-gray-900 text-gray-100 min-h-screen p-4 md:p-8 font-sans flex flex-col justify-between">
 
-    <div class="max-w-5xl mx-auto w-full">
+    <div class="max-w-7xl mx-auto w-full">
         <!-- Cabecera -->
         <header class="text-center mb-6 border-b border-gray-800 pb-6 flex flex-col items-center">
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-4 w-full">
@@ -239,9 +239,9 @@ GENERAL + MICRO + MID + MAXI
             <h2 class="text-xl font-bold text-yellow-400 flex items-center gap-2 mb-6 border-b border-gray-700 pb-3">
                 <span>🏆</span> Sala de Trofeos / Salón de la Fama
             </h2>
-            <div id="contenedor-trofeos" class="grid grid-cols-1 md:grid-cols-2 gap-8 p-2">
-                <p class="text-gray-400 text-center col-span-full">Cargando la Sala de Trofeos...</p>
-            </div>
+            <div id="contenedor-trofeos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2">
+    <p class="text-gray-400 text-center col-span-full">Cargando la Sala de Trofeos...</p>
+</div>
         </div>
 
         <!-- SECCIÓN: NOTICIAS / COMUNICADOS -->
@@ -448,46 +448,46 @@ function cargarTrofeos() {
                     }
 
                     cont.innerHTML = datos.map(item => `
-                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 bg-gray-900/40 p-4 rounded-xl border border-gray-700/50 shadow-lg">
-                            
-                            <!-- MARCO IMAGEN Y NOMBRE CAMPEONATO + CATEGORÍA -->
-                            <div class="flex flex-col items-center w-full sm:w-[220px] shrink-0">
-                                <div class="w-full h-[270px] border-4 border-yellow-500 rounded-lg overflow-hidden bg-gray-900 flex items-center justify-center shadow-inner">
-                                    <img src="${item.imagen}" alt="Trofeo" class="w-full h-full object-contain p-2" onerror="this.onerror=null; this.src='https://via.placeholder.com/220x270/111827/eab308?text=IMAGEN+TROFEO';">
-                                </div>
-                                
-                                <div class="w-full border-2 border-yellow-500 bg-gray-900 text-emerald-400 py-1.5 px-2 mt-2 text-center rounded tracking-wider flex flex-col justify-center gap-0.5">
-                                    <span class="text-[11px] font-extrabold uppercase leading-tight">${item.campeonato}</span>
-                                    <span class="text-[10px] font-black text-yellow-400 uppercase tracking-widest">${item.categoria}</span>
-                                </div>
-                            </div>
+    <div class="flex flex-col items-center bg-gray-900/40 p-4 rounded-xl border border-gray-700/50 shadow-lg">
+        
+        <!-- MARCO IMAGEN Y NOMBRE CAMPEONATO + CATEGORÍA -->
+        <div class="flex flex-col items-center w-full">
+            <div class="w-full h-[240px] border-4 border-yellow-500 rounded-lg overflow-hidden bg-gray-900 flex items-center justify-center shadow-inner">
+                <img src="${item.imagen}" alt="Trofeo" class="w-full h-full object-contain p-2" onerror="this.onerror=null; this.src='https://via.placeholder.com/220x270/111827/eab308?text=IMAGEN+TROFEO';">
+            </div>
+            
+            <div class="w-full border-2 border-yellow-500 bg-gray-900 text-emerald-400 py-1.5 px-2 mt-2 text-center rounded tracking-wider flex flex-col justify-center gap-0.5">
+                <span class="text-[11px] font-extrabold uppercase leading-tight">${item.campeonato}</span>
+                <span class="text-[10px] font-black text-yellow-400 uppercase tracking-widest">${item.categoria}</span>
+            </div>
+        </div>
 
-                            <!-- BLOQUE DATOS PILOTO -->
-                            <div class="flex flex-col justify-center gap-3 w-full py-2">
-                                <h3 class="text-2xl font-black text-yellow-400 tracking-wide">${item.piloto}</h3>
-                                
-                                <div class="text-lg font-bold">
-                                    <span class="text-yellow-500">PTS:</span> 
-                                    <span class="text-emerald-400 font-mono">${item.puntos}</span>
-                                </div>
+        <!-- BLOQUE DATOS PILOTO -->
+        <div class="flex flex-col items-center text-center justify-center gap-2 w-full py-3">
+            <h3 class="text-xl font-black text-yellow-400 tracking-wide">${item.piloto}</h3>
+            
+            <div class="text-base font-bold">
+                <span class="text-yellow-500">PTS:</span> 
+                <span class="text-emerald-400 font-mono">${item.puntos}</span>
+            </div>
 
-                                <div class="space-y-1">
-                                    <div class="text-sm font-black text-yellow-500 tracking-wider">PODIOS:</div>
-                                    <div class="flex items-center gap-3 text-base font-extrabold">
-                                        <div><span class="text-yellow-400">1º</span> <span class="text-emerald-400 font-mono text-sm">[${item.primeros}]</span></div>
-                                        <div><span class="text-gray-300">2º</span> <span class="text-emerald-400 font-mono text-sm">[${item.segundos}]</span></div>
-                                        <div><span class="text-amber-600">3º</span> <span class="text-emerald-400 font-mono text-sm">[${item.terceros}]</span></div>
-                                    </div>
-                                </div>
+            <div class="space-y-0.5">
+                <div class="text-xs font-black text-yellow-500 tracking-wider">PODIOS:</div>
+                <div class="flex items-center justify-center gap-2 text-sm font-extrabold">
+                    <div><span class="text-yellow-400">1º</span> <span class="text-emerald-400 font-mono text-xs">[${item.primeros}]</span></div>
+                    <div><span class="text-gray-300">2º</span> <span class="text-emerald-400 font-mono text-xs">[${item.segundos}]</span></div>
+                    <div><span class="text-amber-600">3º</span> <span class="text-emerald-400 font-mono text-xs">[${item.terceros}]</span></div>
+                </div>
+            </div>
 
-                                <div class="text-sm font-bold mt-1">
-                                    <span class="text-yellow-500 font-black tracking-wider">SCRATCHES:</span> 
-                                    <span class="text-emerald-400 font-mono text-base">${item.scratches}</span>
-                                </div>
-                            </div>
+            <div class="text-xs font-bold mt-0.5">
+                <span class="text-yellow-500 font-black tracking-wider">SCRATCHES:</span> 
+                <span class="text-emerald-400 font-mono text-sm">${item.scratches}</span>
+            </div>
+        </div>
 
-                        </div>
-                    `).join('');
+    </div>
+`).join('');
                 })
                 .catch(() => {
                     const cont = document.getElementById('contenedor-trofeos');
@@ -882,4 +882,3 @@ try {
     </script>
 </body>
 </html>
-
